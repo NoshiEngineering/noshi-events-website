@@ -15,7 +15,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "Noshi Events",
-  description: "Noshi Events",
+  description: "Noshi Events!!",
 };
 
 export default function RootLayout({
