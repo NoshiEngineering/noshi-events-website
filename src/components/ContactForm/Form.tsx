@@ -2,47 +2,35 @@
 import { Button, Checkbox, FormControlLabel, Stack } from "@mui/material";
 import React, { useState } from "react";
 import CustomTextField from "./shared/CustomTextField";
+import styles from "./styles.module.css";
+import { Controller, useForm } from "react-hook-form";
+import { IFormValues } from "./interface";
+import { defaultFormValues } from "./constants";
 
 const Form = () => {
-  const [value, setValue] = useState<string>("");
-  return (
-    <form>
-      <Stack spacing={0.5}>
-        <CustomTextField
-          placeholder="Name *"
-          value={value}
-          onChange={(newValue) => setValue(newValue)}
-        />
-        <CustomTextField
-          placeholder="Email *"
-          value={value}
-          onChange={(newValue) => setValue(newValue)}
-        />
-        <CustomTextField
-          placeholder="Phone *"
-          value={value}
-          onChange={(newValue) => setValue(newValue)}
-        />
-        <FormControlLabel
-          control={<Checkbox defaultChecked />}
-          label="Available on WhatsApp"
-          sx={{
-            marginLeft: 0,
-            "& .MuiFormControlLabel-label": {
-              marginLeft: "-4px",
-            },
-          }}
-        />
+  const {
+    handleSubmit,
+    control,
+    formState: { isValid },
+  } = useForm<IFormValues>({
+    defaultValues: defaultFormValues,
+  });
 
-        <Stack justifyContent="center" alignItems="center">
-          <Button
-            variant="contained"
-            sx={{ padding: "8px 24px", backgroundColor: "#008c5a" }}
-          >
-            Submit
-          </Button>
-        </Stack>
-      </Stack>
+  const onFormSubmit = (values: IFormValues) => {
+    console.log(values, "submitted values");
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onFormSubmit)}>
+      <CustomTextField
+        label="First Name"
+        placeholder="First Name *"
+        value={"value"}
+        onChange={(newValue) => {}}
+      />
+      <Button variant="contained" fullWidth className={styles.submitBtn}>
+        Submit
+      </Button>
     </form>
   );
 };

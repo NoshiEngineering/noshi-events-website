@@ -5,17 +5,8 @@ import Form from "./Form";
 
 const ContactUs = () => {
   return (
-    <Paper
-      sx={{ width: "502px", border: "10px solid #DEDEDBBD" }}
-      elevation={0}
-      className={styles.mainContainer}
-    >
-      <Typography
-        color="#765D37"
-        fontWeight={600}
-        fontSize="28px"
-        textAlign="center"
-      >
+    <Paper className={styles.mainContainer}>
+      <Typography className={styles.headingText} fontSize={"20px"}>
         CONTACT US
       </Typography>
       <Form />

@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
-export const connect = async () => {
+const dbConnection = async () => {
   try {
-    mongoose.connect(process.env.MONGODB_URI!);
+    mongoose.connect(`${process.env.MONGODB_URI}/noshi-events`!);
     const connection = mongoose.connection;
     connection.on("Connected", () => {
       console.log("Mongo db connected successfully");
@@ -17,3 +17,5 @@ export const connect = async () => {
     console.log(error);
   }
 };
+
+export default dbConnection;
