@@ -3,10 +3,10 @@
   width: 100%;
 }
 .contentContainer{
-  padding: 20px 0px;
+  padding: 20px 0px !important;
 }
 .links{
-  margin-left: 44px;
+  margin-left: 44px !important;
   font-weight: 500;
 }
 .buttonStyles{
