@@ -1,6 +1,5 @@
-import Navbar from "@/components/Navbar";
 // import styles from "./page.module.css";
-import { Section1 } from "@/components/HomePage";
+// import { Section1 } from "@/components/HomePage";
 import ContactUs from "@/components/ContactForm";
 import { Stack } from "@mui/material";
 
@@ -22,6 +21,9 @@ export default function Home() {
       >
         <ContactUs />
       </Stack> */}
+      <Stack padding={{ xs: "14px" }}>
+        <ContactUs />
+      </Stack>
     </>
   );
 }
