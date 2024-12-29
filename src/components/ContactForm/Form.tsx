@@ -18,6 +18,7 @@ const Form = () => {
 
   const onFormSubmit = (values: IFormValues) => {
     console.log(values, "submitted values");
+    setIsSubmitting(false);
   };
 
   return (
