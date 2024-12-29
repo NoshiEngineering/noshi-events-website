@@ -9,7 +9,7 @@ export default function Home() {
     <>
       {/* <Navbar /> */}
       {/* <Section1 /> */}
-      <Stack
+      {/* <Stack
         sx={{
           backgroundColor: "#FBF9EF",
           height: "100vh",
@@ -21,7 +21,7 @@ export default function Home() {
         }}
       >
         <ContactUs />
-      </Stack>
+      </Stack> */}
     </>
   );
 }

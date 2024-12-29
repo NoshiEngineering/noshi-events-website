@@ -4,3 +4,20 @@
   margin: 0;
   font-family: var(--font-poppins), sans-serif;
 }
+
+
+@media (max-width: 1202px) {
+  .fixed-size-container {
+    width: 100% !important;
+    max-width: 95% !important;
+    margin: 0 auto !important;
+  }
+}
+
+@media (min-width: 1202px) {
+  .fixed-size-container {
+    width: 97% !important;
+    max-width: 1202px !important;
+    margin: 0 auto !important;
+  }
+}

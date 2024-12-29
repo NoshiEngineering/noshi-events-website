@@ -1,0 +1,15 @@
+.backgroundContainer{
+  background-color: #FBF9EF;
+  width: 100%;
+}
+.contentContainer{
+  padding: 20px 0px;
+}
+.links{
+  margin-left: 44px;
+  font-weight: 500;
+}
+.buttonStyles{
+  background-color: #658352;
+  padding: 10px 24px;
+}

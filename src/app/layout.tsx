@@ -5,6 +5,7 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 import theme from "@/theme/theme";
+import Header from "@/components/Header";
 
 // Google Font: Poppins
 const poppins = Poppins({
@@ -29,7 +30,8 @@ export default function RootLayout({
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            {children}
+            <Header/>
+            {children}      
           </ThemeProvider>
         </AppRouterCacheProvider>
       </body>
