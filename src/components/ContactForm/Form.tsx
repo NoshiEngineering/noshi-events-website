@@ -97,7 +97,6 @@ const Form = () => {
                 Phone
               </Typography>
               <TextField
-                hiddenLabel
                 variant="outlined"
                 size="small"
                 type="number"
@@ -111,6 +110,16 @@ const Form = () => {
                 }}
                 error={!!fieldState.error}
                 helperText={fieldState.error?.message}
+                sx={{
+                  "& input[type='number']::-webkit-outer-spin-button, & input[type='number']::-webkit-inner-spin-button":
+                    {
+                      appearance: "none",
+                      margin: 0,
+                    },
+                  "& input[type='number']": {
+                    MozAppearance: "textfield",
+                  },
+                }}
               />
             </Stack>
           )}
