@@ -6,6 +6,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 import theme from "@/theme/theme";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 // Google Font: Poppins
 const poppins = Poppins({
@@ -30,8 +31,9 @@ export default function RootLayout({
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            <Header/>
-            {children}      
+            <Header />
+            {children}
+            <Footer />
           </ThemeProvider>
         </AppRouterCacheProvider>
       </body>

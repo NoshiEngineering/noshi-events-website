@@ -7,7 +7,13 @@ import Grid from "@mui/material/Grid2";
 export default function Home() {
   return (
     <>
-      <Stack className="fixed-size-container">
+      <Stack
+        className="fixed-size-container"
+        sx={{
+          paddingTop: { xs: "30px", md: "15px" },
+          paddingBottom: { xs: "20px", md: "18px" },
+        }}
+      >
         <Grid container>
           <Grid size={{ xs: 12, md: 4.5 }}>
             <ContactUs />

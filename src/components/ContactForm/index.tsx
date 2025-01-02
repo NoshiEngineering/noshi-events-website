@@ -5,6 +5,7 @@ import Form from "./Form";
 const ContactUs = () => {
   return (
     <Paper
+      elevation={4}
       sx={{
         padding: { xs: "20px", md: "22px" },
         gap: { xs: "24px" },
