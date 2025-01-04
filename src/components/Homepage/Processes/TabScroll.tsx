@@ -5,7 +5,7 @@ import { Stack, Typography } from "@mui/material";
 
 const TabScroll = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const sectionRefs = useRef<(HTMLDivElement | null)[]>([]); // Correctly type the ref array
+  const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,22 +30,21 @@ const TabScroll = () => {
   }, []);
 
   const getLabelStyles = (index: number) => {
-    // Increase font size for the active section
     const isActive = activeIndex === index;
-    const fontSize = isActive ? "32px" : "28px"; // Larger font size for the active section
-    const fontWeight = isActive ? 700 : 600; // Increase font weight for the active section
+    const fontSize = isActive ? "32px" : "28px";
+    const fontWeight = isActive ? 700 : 600;
 
     return { fontSize, fontWeight };
   };
 
   const getDescriptionStyles = (
     index: number,
-    defaultFontSize: string = "20px", // Default to "20px" if not provided
-    maximizedFontSize: string = "22px" // Default to "22px" if not provided
+    defaultFontSize: string = "20px",
+    maximizedFontSize: string = "22px"
   ) => {
     const isActive = activeIndex === index;
-    const fontSize = isActive ? maximizedFontSize : defaultFontSize; // Use maximized size for active section
-    const fontWeight = isActive ? 500 : 400; // Font weight 500 for active section
+    const fontSize = isActive ? maximizedFontSize : defaultFontSize;
+    const fontWeight = isActive ? 500 : 400;
 
     return { fontSize, fontWeight };
   };
@@ -67,8 +66,7 @@ const TabScroll = () => {
             position: "absolute",
             top: `calc(${
               (activeIndex / processDescription.length) * 100
-            }% + 80px)`, // adjust 80px based on the gaps so that it will align at the center of the section
-            // height: `${100 / processDescription.length}%`,
+            }% + 80px)`,
             height: "75px",
             left: "-5px",
             border: "5px solid #765D37",
@@ -85,35 +83,41 @@ const TabScroll = () => {
             key={index}
             ref={(el) => {
               sectionRefs.current[index] = el;
-            }} // No return value here
-            sx={{ padding: "20px 0" }}
+            }}
+            sx={{
+              padding: "20px 0",
+              transform:
+                activeIndex === index ? "translateY(0)" : "translateY(20px)", // Smooth transition for position
+              transition: "transform 0.3s ease", // Smooth transition for position
+            }}
           >
             <Typography
-              fontSize={getLabelStyles(index).fontSize} // Apply dynamic font size
-              fontWeight={getLabelStyles(index).fontWeight} // Apply dynamic font weight
+              fontSize={getLabelStyles(index).fontSize}
+              fontWeight={getLabelStyles(index).fontWeight}
+              sx={{
+                transition: "font-size 0.3s ease, font-weight 0.3s ease", // Smooth transition for font size and weight
+              }}
             >
               {process.label}
             </Typography>
             <Stack spacing={1}>
               <Typography
-                fontSize={getDescriptionStyles(index, "20px", "22px").fontSize} // Apply dynamic font size
-                fontWeight={getDescriptionStyles(index).fontWeight} // Apply dynamic font weight
-                style={
-                  {
-                    // Truncate text with ellipsis when it's not the active section
-                    //   display: "-webkit-box",
-                    //   WebkitBoxOrient: "vertical",
-                    //   overflow: "hidden",
-                    //   WebkitLineClamp: activeIndex === index ? "unset" : 1, // Only truncate when not active
-                    //   textOverflow: "ellipsis",
-                  }
-                }
+                fontSize={getDescriptionStyles(index, "20px", "22px").fontSize}
+                fontWeight={getDescriptionStyles(index).fontWeight}
+                // sx={{
+                //   transition: "font-size 0.3s ease, font-weight 0.3s ease",
+                // }}
               >
                 {process.description} {activeIndex !== index ? "..." : ""}
               </Typography>
               <Stack
                 sx={{
                   display: activeIndex === index ? "block" : "none", // Show full description when active
+                  transform:
+                    activeIndex === index
+                      ? "translateY(0)"
+                      : "translateY(20px)",
+                  transition: "transform 0.3s ease", // Smooth transition for position
                 }}
               >
                 {process.points?.length ? (
@@ -123,8 +127,8 @@ const TabScroll = () => {
                         key={i}
                         style={{
                           fontSize: getDescriptionStyles(index, "16px", "18px")
-                            .fontSize, // Use same font size
-                          fontWeight: getDescriptionStyles(index).fontWeight, // Use same font weight
+                            .fontSize,
+                          fontWeight: getDescriptionStyles(index).fontWeight,
                         }}
                       >
                         {point}
