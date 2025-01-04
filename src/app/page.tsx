@@ -1,4 +1,5 @@
 import ContactUs from "@/components/ContactForm";
+import Processes from "@/components/Homepage/Processes";
 import Newsletter from "@/components/Newsletter";
 import ReachOut from "@/components/ReachOut";
 import { Stack } from "@mui/material";
@@ -14,6 +15,9 @@ export default function Home() {
           paddingBottom: { xs: "20px", md: "18px" },
         }}
       >
+        <Stack>
+          <Processes />
+        </Stack>
         <Grid container>
           <Grid size={{ xs: 12, md: 4.5 }}>
             <ContactUs />

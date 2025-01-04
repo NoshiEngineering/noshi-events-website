@@ -1,15 +1,16 @@
-"use client";
 import { Divider, Stack, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import React from "react";
 import { footerData } from "./constant";
 import { IFooterItem } from "./interface";
 import Link from "next/link";
+// TODO: fix the dynamic imports of the icons
+// import DynamicIcon from "./DynamicIcon";
 
 const RenderLinks = ({ link }: { link: IFooterItem }) => (
   <Link href={link.url} passHref style={{ textDecoration: "none" }}>
     <Stack direction="row" alignItems="center" spacing={1}>
-      {link.icon && <link.icon style={{ color: "white" }} />}
+      {/* {link.icon && <DynamicIcon icon={link.icon} />} */}
       <Typography
         color="#FFFFFF"
         fontWeight={500}

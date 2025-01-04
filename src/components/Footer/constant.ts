@@ -1,4 +1,5 @@
-import { Facebook, Instagram, Linkedin, Youtube } from "mdi-material-ui";
+// TODO: fix this imports so that it won't hamper in data serialization
+// import { Facebook, Instagram, Linkedin, Youtube } from "mdi-material-ui";
 import { IFooterSection } from "./interface";
 
 export const footerData: IFooterSection[] = [
@@ -32,22 +33,22 @@ export const footerData: IFooterSection[] = [
       {
         label: "Facebook",
         url: "https://facebook.com",
-        icon: Facebook,
+        icon: "Facebook",
       },
       {
         label: "Instagram",
         url: "https://instagram.com",
-        icon: Instagram,
+        icon: "Instagram",
       },
       {
         label: "LinkedIn",
         url: "https://linkedin.com",
-        icon: Linkedin,
+        icon: "Linkedin",
       },
       {
         label: "YouTube",
         url: "https://youtube.com",
-        icon: Youtube,
+        icon: "Youtube",
       },
     ],
   },
