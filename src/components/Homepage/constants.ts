@@ -7,7 +7,7 @@ export const processDescription = [
   {
     label: "Event Planning",
     description:
-      "Our meticulous planning phase covers every detail to ensure a flawless event. This includes.",
+      "Our meticulous planning phase covers every detail to ensure a flawless event. This includes:",
     points: [
       "Coordinating with trusted vendors.",
       "Designing stage layouts and event themes.",

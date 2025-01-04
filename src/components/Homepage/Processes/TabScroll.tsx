@@ -56,7 +56,7 @@ const TabScroll = () => {
       <Stack
         sx={{
           position: "relative",
-          minHeight: "140vh",
+          minHeight: "110vh",
           width: "2px",
           backgroundColor: "#765D37",
         }}
@@ -86,7 +86,7 @@ const TabScroll = () => {
             ref={(el) => {
               sectionRefs.current[index] = el;
             }} // No return value here
-            style={{ padding: "20px 0" }}
+            sx={{ padding: "20px 0" }}
           >
             <Typography
               fontSize={getLabelStyles(index).fontSize} // Apply dynamic font size
@@ -98,35 +98,51 @@ const TabScroll = () => {
               <Typography
                 fontSize={getDescriptionStyles(index, "20px", "22px").fontSize} // Apply dynamic font size
                 fontWeight={getDescriptionStyles(index).fontWeight} // Apply dynamic font weight
-              >
-                {process.description}
-              </Typography>
-              {process.points?.length ? (
-                <ul style={{ paddingLeft: "20px" }}>
-                  {process.points.map((point, i) => (
-                    <li
-                      key={i}
-                      style={{
-                        fontSize: getDescriptionStyles(index, "16px", "18px")
-                          .fontSize, // Use same font size
-                        fontWeight: getDescriptionStyles(index).fontWeight, // Use same font weight
-                      }}
-                    >
-                      {point}
-                    </li>
-                  ))}
-                </ul>
-              ) : null}
-              {process.conclusion && (
-                <Typography
-                  fontSize={
-                    getDescriptionStyles(index, "20px", "22px").fontSize
+                style={
+                  {
+                    // Truncate text with ellipsis when it's not the active section
+                    //   display: "-webkit-box",
+                    //   WebkitBoxOrient: "vertical",
+                    //   overflow: "hidden",
+                    //   WebkitLineClamp: activeIndex === index ? "unset" : 1, // Only truncate when not active
+                    //   textOverflow: "ellipsis",
                   }
-                  fontWeight={getDescriptionStyles(index).fontWeight}
-                >
-                  {process.conclusion}
-                </Typography>
-              )}
+                }
+              >
+                {process.description} {activeIndex !== index ? "..." : ""}
+              </Typography>
+              <Stack
+                sx={{
+                  display: activeIndex === index ? "block" : "none", // Show full description when active
+                }}
+              >
+                {process.points?.length ? (
+                  <ul style={{ paddingLeft: "20px" }}>
+                    {process.points.map((point, i) => (
+                      <li
+                        key={i}
+                        style={{
+                          fontSize: getDescriptionStyles(index, "16px", "18px")
+                            .fontSize, // Use same font size
+                          fontWeight: getDescriptionStyles(index).fontWeight, // Use same font weight
+                        }}
+                      >
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+                {process.conclusion && (
+                  <Typography
+                    fontSize={
+                      getDescriptionStyles(index, "20px", "22px").fontSize
+                    }
+                    fontWeight={getDescriptionStyles(index).fontWeight}
+                  >
+                    {process.conclusion}
+                  </Typography>
+                )}
+              </Stack>
             </Stack>
           </Stack>
         ))}
