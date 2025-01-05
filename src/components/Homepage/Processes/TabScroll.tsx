@@ -29,9 +29,13 @@ const TabScroll = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const getLabelStyles = (index: number) => {
+  const getLabelStyles = (
+    index: number,
+    defaultFontSize = "28px",
+    maximizedFontSize = "32px"
+  ) => {
     const isActive = activeIndex === index;
-    const fontSize = isActive ? "32px" : "28px";
+    const fontSize = isActive ? maximizedFontSize : defaultFontSize;
     const fontWeight = isActive ? 700 : 600;
 
     return { fontSize, fontWeight };
@@ -58,6 +62,7 @@ const TabScroll = () => {
           minHeight: "110vh",
           width: "2px",
           backgroundColor: "#765D37",
+          display: { xs: "none", md: "block" },
         }}
       >
         {/* Highlighted Part */}
@@ -76,7 +81,10 @@ const TabScroll = () => {
       </Stack>
 
       {/* Content */}
-      <Stack gap="59px" sx={{ paddingLeft: "20px" }}>
+      <Stack
+        gap={{ xs: "20px", md: "59px" }}
+        sx={{ paddingLeft: { md: "20px" } }}
+      >
         {processDescription.map((process, index) => (
           <Stack
             spacing={1}
@@ -92,7 +100,10 @@ const TabScroll = () => {
             }}
           >
             <Typography
-              fontSize={getLabelStyles(index).fontSize}
+              fontSize={{
+                xs: getLabelStyles(index, "16px", "18px").fontSize,
+                md: getLabelStyles(index).fontSize,
+              }}
               fontWeight={getLabelStyles(index).fontWeight}
               sx={{
                 transition: "font-size 0.3s ease, font-weight 0.3s ease", // Smooth transition for font size and weight
@@ -102,7 +113,10 @@ const TabScroll = () => {
             </Typography>
             <Stack spacing={1}>
               <Typography
-                fontSize={getDescriptionStyles(index, "20px", "22px").fontSize}
+                fontSize={{
+                  xs: getDescriptionStyles(index, "14px", "16px").fontSize,
+                  md: getDescriptionStyles(index, "20px", "22px").fontSize,
+                }}
                 fontWeight={getDescriptionStyles(index).fontWeight}
                 // sx={{
                 //   transition: "font-size 0.3s ease, font-weight 0.3s ease",
@@ -123,24 +137,30 @@ const TabScroll = () => {
                 {process.points?.length ? (
                   <ul style={{ paddingLeft: "20px" }}>
                     {process.points.map((point, i) => (
-                      <li
-                        key={i}
-                        style={{
-                          fontSize: getDescriptionStyles(index, "16px", "18px")
-                            .fontSize,
-                          fontWeight: getDescriptionStyles(index).fontWeight,
-                        }}
-                      >
-                        {point}
+                      <li key={i}>
+                        <Typography
+                          sx={{
+                            fontSize: {
+                              xs: getDescriptionStyles(index, "10px", "12px")
+                                .fontSize,
+                              md: getDescriptionStyles(index, "16px", "18px")
+                                .fontSize,
+                            },
+                            fontWeight: getDescriptionStyles(index).fontWeight,
+                          }}
+                        >
+                          {point}
+                        </Typography>
                       </li>
                     ))}
                   </ul>
                 ) : null}
                 {process.conclusion && (
                   <Typography
-                    fontSize={
-                      getDescriptionStyles(index, "20px", "22px").fontSize
-                    }
+                    fontSize={{
+                      xs: getDescriptionStyles(index, "14px", "16px").fontSize,
+                      md: getDescriptionStyles(index, "20px", "22px").fontSize,
+                    }}
                     fontWeight={getDescriptionStyles(index).fontWeight}
                   >
                     {process.conclusion}
