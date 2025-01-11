@@ -1,12 +1,23 @@
 import { Paper, Typography } from "@mui/material";
 import React from "react";
-import styles from "./styles.module.css";
 import Form from "./Form";
 
 const ContactUs = () => {
   return (
-    <Paper className={styles.mainContainer}>
-      <Typography className={styles.headingText} fontSize={"20px"}>
+    <Paper
+      elevation={4}
+      sx={{
+        padding: { xs: "20px", md: "22px" },
+        gap: { xs: "24px" },
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      <Typography
+        textAlign="center"
+        fontSize={{ xs: "16px", md: "32px" }}
+        fontWeight={700}
+      >
         CONTACT US
       </Typography>
       <Form />

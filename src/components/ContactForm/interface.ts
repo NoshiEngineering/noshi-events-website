@@ -5,4 +5,10 @@ export interface IFormValues {
   phone: string;
   whatsAppAvailability: boolean;
   newsLetterSubscription: true;
+  eventType: string;
+}
+
+export interface IEventOptions {
+  label: string;
+  value: string;
 }
