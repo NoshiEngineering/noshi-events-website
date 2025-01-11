@@ -13,7 +13,9 @@ const Processes = () => {
           we plan, we execute, and you celebrate
         </Typography>
       </Stack>
-      <TabScroll />
+      <Stack direction="row">
+        <TabScroll />
+      </Stack>
     </Stack>
   );
 };

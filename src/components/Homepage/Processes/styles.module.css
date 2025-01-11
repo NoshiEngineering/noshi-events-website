@@ -1,0 +1,11 @@
+@media (min-width: 900px) and (max-width: 1000px) {
+  .contentContainer {
+    max-width: 800px !important;
+  }
+}
+
+@media (min-width: 1000px) and (max-width: 1200px) {
+  .contentContainer {
+    max-width: 900px !important;
+  }
+}
