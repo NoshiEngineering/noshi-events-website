@@ -1,5 +1,23 @@
-"use client";
+'use client';
+
 import { createTheme } from "@mui/material/styles";
+import { PaletteColor, PaletteColorOptions } from "@mui/material/styles"; // Import required types
+
+// Extend the Palette and PaletteOptions interfaces
+declare module "@mui/material/styles" {
+  interface Palette {
+    tertiary: PaletteColor; // Add tertiary color to Palette
+  }
+  interface PaletteOptions {
+    tertiary?: PaletteColorOptions; // Add tertiary color to PaletteOptions
+  }
+}
+
+declare module "@mui/material/Button" {
+  interface ButtonPropsColorOverrides {
+    tertiary: true; // Allow "tertiary" as a valid color prop
+  }
+}
 
 const theme = createTheme({
   cssVariables: true,
@@ -30,18 +48,33 @@ const theme = createTheme({
     "none", // Level 23
     "none", // Level 24
   ],
+  palette: {
+    primary: {
+      main: "#765D37", // Primary color
+    },
+    secondary: {
+      main: "#FBF9EF", // Secondary color
+    },
+    tertiary: {
+      main: "#658352", // Tertiary color
+    },
+  },
   typography: {
     fontFamily: "var(--font-poppins)",
+    fontWeightLight: 400, // Light font weight
+    fontWeightRegular: 500, // Regular font weight
+    fontWeightMedium: 600, // Medium font weight
+    fontWeightBold: 700, // Bold font weight
+    h1: {
+      fontWeight: 700,
+    },
+    h2: {
+      fontWeight: 600,
+    },
+    body1: {
+      fontWeight: 400,
+    },
   },
-  // components: {
-  //   MuiButton: {
-  //     styleOverrides: {
-  //       root: () => ({
-  //         textTransform: "none",
-  //       }),
-  //     },
-  //   },
-  // },
 });
 
 export default theme;
