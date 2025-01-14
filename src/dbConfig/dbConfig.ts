@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const dbConnection = async () => {
   try {
-    mongoose.connect(`${process.env.MONGODB_URI}/noshi-events`!);
+    mongoose.connect(`${process.env.MONGODB_URI}`!);
     const connection = mongoose.connection;
     connection.on("Connected", () => {
       console.log("Mongo db connected successfully");

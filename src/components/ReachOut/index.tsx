@@ -1,10 +1,24 @@
 "use client";
-import { Stack, Typography } from "@mui/material";
-import React from "react";
+import { Snackbar, Stack, Typography, Alert } from "@mui/material";
+import React, { useState } from "react";
 import ContactCard from "./ContactCard";
 import { EmailOutline, MapMarkerOutline, Phone } from "mdi-material-ui";
+import copy from "copy-to-clipboard";
 
 const ReachOut = () => {
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
+
+  const handleCopy = (text: string) => {
+    copy(text);
+    setSnackbarMessage(`Copied to clipboard: ${text}`);
+    setSnackbarOpen(true);
+  };
+
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
+  };
+
   return (
     <Stack alignItems="center" gap={{ xs: "8px", md: "60px" }} width="100%">
       <Typography
@@ -41,18 +55,12 @@ const ReachOut = () => {
             {
               content: "+91 9373090013",
               clickable: true,
-              onClick: () => {
-                navigator.clipboard.writeText("+91 9373090013");
-                alert("Copied to clipboard: +91 9373090013");
-              },
+              onClick: () => handleCopy("+91 9373090013"),
             },
             {
               content: "+91 7908728576",
               clickable: true,
-              onClick: () => {
-                navigator.clipboard.writeText("+91 7908728576");
-                alert("Copied to clipboard: +91 7908728576");
-              },
+              onClick: () => handleCopy("+91 7908728576"),
             },
           ]}
         />
@@ -62,15 +70,43 @@ const ReachOut = () => {
               sx={{ fontSize: 48, cursor: "pointer" }}
               onClick={() =>
                 window.open(
-                  "https://www.google.com/maps/place/Ponda,+Goa",
+                  "https://maps.app.goo.gl/SWY6xox3kbofLxW2A",
                   "_blank"
                 )
               }
             />
           }
-          text={["We are located at", { content: "Ponda, Goa" }]}
+          text={[
+            "We are located at",
+            {
+              content: "Goa",
+              clickable: true,
+              onClick: () =>
+                window.open(
+                  "https://maps.app.goo.gl/SWY6xox3kbofLxW2A",
+                  "_blank"
+                ),
+              sx: { textDecoration: "underline" },
+            },
+          ]}
         />
       </Stack>
+
+      {/* Snackbar for notifications */}
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={3000}
+        onClose={handleSnackbarClose}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      >
+        <Alert
+          onClose={handleSnackbarClose}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </Stack>
   );
 };

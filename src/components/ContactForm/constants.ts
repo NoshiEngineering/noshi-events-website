@@ -27,4 +27,8 @@ export const eventSelectionOptions: IEventOptions[] = [
     label: "Promotional Event (Activations,  Music Events etc)",
     value: "Promotional Event",
   },
+  {
+    label: "Other",
+    value: "Other",
+  },
 ];

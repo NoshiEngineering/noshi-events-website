@@ -1,11 +1,9 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
-import { processDescription } from "../constants";
 import { Stack, Typography } from "@mui/material";
-import ProcessIcons from "./ProcessIcons";
-import styles from "./styles.module.css";
+import React, { useEffect, useRef, useState } from "react";
+import { processDescriptionMobile } from "../constants";
 
-const TabScroll = () => {
+const MobileTabScroll = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [contentHeight, setContentHeight] = useState<number | undefined>(
     undefined
@@ -41,7 +39,7 @@ const TabScroll = () => {
     if (containerRef.current) {
       setContentHeight(containerRef.current.scrollHeight);
     }
-  }, [processDescription]);
+  }, [processDescriptionMobile]);
 
   const getLabelStyles = (
     index: number,
@@ -67,6 +65,10 @@ const TabScroll = () => {
     return { fontSize, fontWeight };
   };
 
+  const truncateText = (text: string, maxLength: number, isActive: boolean) => {
+    if (isActive || text.length <= maxLength) return text; // Show full content if active or shorter than max length
+    return `${text.substring(0, maxLength)}...`; // Truncate and add ellipses
+  };
   return (
     <Stack direction="row" alignItems="flex-start" padding={2}>
       {/* Vertical Divider */}
@@ -74,7 +76,7 @@ const TabScroll = () => {
         sx={{
           position: "relative",
           height: contentHeight ? `${contentHeight}px` : "auto",
-          width: "2px",
+          width: "4px",
           backgroundColor: "#765D37",
           // display: { xs: "none", md: "block" },
           marginRight: { xs: "10px", md: "0px" },
@@ -85,11 +87,11 @@ const TabScroll = () => {
           style={{
             position: "absolute",
             top: `calc(${
-              (activeIndex / processDescription.length) * 100
+              (activeIndex / processDescriptionMobile.length) * 100
             }% + 80px)`,
             height: "75px",
-            left: "-5px",
-            border: "5px solid #765D37",
+            left: "-2.5px",
+            border: "3px solid #765D37",
             transition: "top 0.3s ease",
           }}
         />
@@ -99,13 +101,12 @@ const TabScroll = () => {
       <Stack
         ref={containerRef}
         gap={{ xs: "20px", md: "59px" }}
-        sx={{
-          paddingLeft: { md: "20px" },
-          paddingRight: { md: "100px" },
-        }}
-        className={styles.contentContainer}
+        // sx={{
+        //   paddingLeft: { md: "20px" },
+        //   paddingRight: { md: "100px" },
+        // }}
       >
-        {processDescription.map((process, index) => (
+        {processDescriptionMobile.map((process, index) => (
           <Stack
             spacing={1}
             key={index}
@@ -113,7 +114,7 @@ const TabScroll = () => {
               sectionRefs.current[index] = el;
             }}
             sx={{
-              padding: "20px 0",
+              padding: "8px 0",
               transform:
                 activeIndex === index ? "translateY(0)" : "translateY(20px)",
               transition: "transform 0.3s ease",
@@ -122,7 +123,6 @@ const TabScroll = () => {
             <Typography
               fontSize={{
                 xs: getLabelStyles(index, "18px", "20px").fontSize,
-                md: getLabelStyles(index).fontSize,
               }}
               fontWeight={getLabelStyles(index).fontWeight}
               sx={{
@@ -131,71 +131,19 @@ const TabScroll = () => {
             >
               {process.label}
             </Typography>
-            <Stack spacing={1}>
-              <Typography
-                fontSize={{
-                  // xs: getDescriptionStyles(index, "14px", "16px").fontSize,
-                  xs: getLabelStyles(index, "16px", "18px").fontSize,
-                  md: getDescriptionStyles(index, "20px", "22px").fontSize,
-                }}
-                fontWeight={getDescriptionStyles(index).fontWeight}
-              >
-                {process.description} {activeIndex !== index ? "..." : ""}
-              </Typography>
-              <Stack
-                sx={{
-                  display: activeIndex === index ? "block" : "none",
-                  transform:
-                    activeIndex === index
-                      ? "translateY(0)"
-                      : "translateY(20px)",
-                  transition: "transform 0.3s ease",
-                }}
-              >
-                {process.points?.length ? (
-                  <ul style={{ paddingLeft: "20px" }}>
-                    {process.points.map((point, i) => (
-                      <li key={i}>
-                        <Typography
-                          sx={{
-                            fontSize: {
-                              xs: getDescriptionStyles(index, "14px", "16px")
-                                .fontSize,
-                              md: getDescriptionStyles(index, "16px", "18px")
-                                .fontSize,
-                            },
-                            fontWeight: getDescriptionStyles(index).fontWeight,
-                          }}
-                        >
-                          {point}
-                        </Typography>
-                      </li>
-                    ))}
-                  </ul>
-                ) : null}
-                {process.conclusion && (
-                  <Typography
-                    fontSize={{
-                      // xs: getDescriptionStyles(index, "14px", "16px").fontSize,
-                      xs: getDescriptionStyles(index, "16px", "18px").fontSize,
-                      md: getDescriptionStyles(index, "20px", "22px").fontSize,
-                    }}
-                    fontWeight={getDescriptionStyles(index).fontWeight}
-                  >
-                    {process.conclusion}
-                  </Typography>
-                )}
-              </Stack>
-            </Stack>
+            <Typography
+              fontSize={{
+                xs: getDescriptionStyles(index, "16px", "18px").fontSize,
+              }}
+              fontWeight={getDescriptionStyles(index).fontWeight}
+            >
+              {truncateText(process.description, 120, activeIndex === index)}
+            </Typography>
           </Stack>
         ))}
       </Stack>
-      <ProcessIcons
-        height={contentHeight ? `${contentHeight}px` : "auto"}
-        activeIndex={activeIndex}
-      />
     </Stack>
   );
 };
 
-export default TabScroll;
+export default MobileTabScroll;

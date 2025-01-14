@@ -15,7 +15,7 @@ interface IContactCardProps {
 
 const ContactCard: React.FC<IContactCardProps> = ({ icon, text }) => {
   return (
-    <Stack alignItems="center" gap={{ xs: "8px", md: "25px" }}>
+    <Stack alignItems="center" gap={{ xs: "8px", md: "10px" }}>
       {icon}
       {text.map((item, index) =>
         typeof item === "string" ? (

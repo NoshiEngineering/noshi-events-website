@@ -1,6 +1,7 @@
 import { Stack, Typography } from "@mui/material";
 import React from "react";
 import TabScroll from "./TabScroll";
+import MobileTabScroll from "./MobileTabScroll";
 
 const Processes = () => {
   return (
@@ -13,8 +14,13 @@ const Processes = () => {
           we plan, we execute, and you celebrate
         </Typography>
       </Stack>
-      <Stack direction="row">
+      {/* desktop scroll */}
+      <Stack display={{ xs: "none", md: "block" }}>
         <TabScroll />
+      </Stack>
+      {/* mobile scroll */}
+      <Stack display={{ xs: "block", md: "none" }}>
+        <MobileTabScroll />
       </Stack>
     </Stack>
   );

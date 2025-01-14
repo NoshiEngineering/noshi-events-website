@@ -23,8 +23,8 @@ export const processDescription: IProcessDescription[] = [
       "Logistics Management: Overseeing transportation, accommodation, and on-site arrangements for a hassle-free experience.",
       "Venue Finalization: Recommending and securing the perfect venue to suit your event’s tone and scale.",
     ],
-    conclusion:
-      "Throughout the planning process, we maintain open communication with you. Whether it’s approving design elements or updating schedules, you’re always informed without having to handle the intricacies yourself.",
+    // conclusion:
+    //   "Throughout the planning process, we maintain open communication with you. Whether it’s approving design elements or updating schedules, you’re always informed without having to handle the intricacies yourself.",
   },
   {
     label: "Event Execution",
@@ -49,5 +49,28 @@ export const processDescription: IProcessDescription[] = [
     ],
     conclusion:
       "This final stage is what sets us apart, offering you a complete event experience from start to finish.",
+  },
+];
+
+export const processDescriptionMobile: IProcessDescription[] = [
+  {
+    label: "Initial Consultation",
+    description:
+      "Every event begins with understanding your vision. We discuss your goals, preferences, and expectations, offering creative ideas that align with your purpose. Together, we create a personalized plan that reflects your audience and desired outcomes.",
+  },
+  {
+    label: "Event Planning",
+    description:
+      "We handle every aspect of planning, from coordinating with trusted vendors to designing themes and layouts. Logistics, catering, and venue finalization are managed with precision. Throughout this phase, we keep you informed, ensuring a stress-free experience.",
+  },
+  {
+    label: "Event Execution",
+    description:
+      "On the event day, we take full charge to ensure everything runs flawlessly. From managing vendors to overseeing timelines, our team handles every detail, allowing you to enjoy the moment without worries.",
+  },
+  {
+    label: "Post-Event Support",
+    description:
+      "Our commitment goes beyond the event. We provide a detailed review of its success, gather meaningful insights, and deliver professionally edited photos and videos, leaving you with cherished memories and valuable takeaways. At Noshi Events, we craft not just events but experiences that leave lasting impressions. From the first meeting to post-event reflections, we’re with you every step of the way.",
   },
 ];
