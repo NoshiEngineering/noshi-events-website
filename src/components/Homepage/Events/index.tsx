@@ -32,7 +32,7 @@ const eventTypes = [
 
 function Events() {
   return (
-    <Stack className='fixed-size-container'>
+    <Stack className='fixed-size-container' sx={{marginBottom: "14px !important", paddingTop: "20px !important"}} id="events-section">
       <Stack sx={{display: { xs: "none", md: "block" }}}>
         <EventsDesktopView eventTypes={eventTypes}/>
       </Stack>

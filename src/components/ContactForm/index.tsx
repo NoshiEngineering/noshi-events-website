@@ -12,6 +12,7 @@ const ContactUs = () => {
         display: "flex",
         flexDirection: "column",
       }}
+      id="contact-section"
     >
       <Typography
         textAlign="center"
