@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import { Drawer, Stack, Typography } from "@mui/material";
 import { CloseCircle } from "mdi-material-ui";
@@ -14,7 +15,12 @@ function SideNav({ open, toggleDrawer }: ISideNav) {
       open={open}
       onClose={() => toggleDrawer(false)}
       onKeyDown={() => toggleDrawer(false)}
-      sx={{ width: "360px", height: "100%",position: "relative", background: "#fff" }}
+      sx={{
+        width: "360px",
+        height: "100%",
+        position: "relative",
+        background: "#fff",
+      }}
     >
       <CloseCircle
         sx={{

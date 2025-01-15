@@ -39,6 +39,7 @@ const MobileTabScroll = () => {
     if (containerRef.current) {
       setContentHeight(containerRef.current.scrollHeight);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [processDescriptionMobile]);
 
   const getLabelStyles = (

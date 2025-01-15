@@ -1,6 +1,6 @@
 "use client";
-import React, {useState} from "react";
-import { Button, Stack, Typography, useMediaQuery } from "@mui/material";
+import React, { useState } from "react";
+import { Button, Stack, Typography } from "@mui/material";
 import styles from "./index.module.css";
 import Image from "next/image";
 import { Menu, Phone } from "mdi-material-ui";
@@ -13,21 +13,21 @@ function Header() {
     setDrawerOpen((prevState) => !prevState);
   };
 
-  const handleScrollToContact = (e: any) => {
-    let div = document.querySelector("#contact-section");
+  const handleScrollToContact = () => {
+    const div = document.querySelector("#contact-section");
     if (div) {
       div.scrollIntoView({ block: "start", behavior: "smooth" });
     }
   };
 
-  const handleScrollToEvents = (e: any) => {
-    let div = document.querySelector("#events-section");
+  const handleScrollToEvents = () => {
+    const div = document.querySelector("#events-section");
     if (div) {
       div.scrollIntoView({ block: "start", behavior: "smooth" });
     }
   };
 
-  const phoneNumber = "+91 9373090013"
+  const phoneNumber = "+91 9373090013";
 
   const handleCopyPhoneNumber = () => {
     navigator.clipboard
@@ -113,12 +113,7 @@ function Header() {
           </Stack>
         </Stack>
       </Stack>
-      {drawerOpen && (
-        <SideNav
-          open={drawerOpen}
-          toggleDrawer={toggleDrawer}
-        />
-      )}
+      {drawerOpen && <SideNav open={drawerOpen} toggleDrawer={toggleDrawer} />}
     </>
   );
 }
