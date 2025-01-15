@@ -37,17 +37,17 @@ export const footerData: IFooterSection[] = [
       },
       {
         label: "Instagram",
-        url: "https://instagram.com",
+        url: "https://www.instagram.com/noshievents",
         icon: "Instagram",
       },
       {
         label: "LinkedIn",
-        url: "https://linkedin.com",
+        url: "https://www.linkedin.com/company/noshievents",
         icon: "Linkedin",
       },
       {
         label: "YouTube",
-        url: "https://youtube.com",
+        url: "https://www.youtube.com/channel/UC43-JcTDGR0Ickfxznz3YTQ",
         icon: "Youtube",
       },
     ],
