@@ -1,10 +1,10 @@
 import mongoose, { Schema, Document, Model } from "mongoose";
 
 export enum EventType {
-  Corporate = "Corporate Event",
-  Personal = "Personal Event",
-  Sport = "Sport Event",
-  Promotional = "Promotional Event",
+  Corporate = "Corporate",
+  Personal = "Personal",
+  Sport = "Sport",
+  Promotional = "Promotional",
   Other = "Other",
 }
 
@@ -20,23 +20,22 @@ interface IEnquiry extends Document {
   // newsLetterSubscription?: mongoose.Types.ObjectId;
 }
 
-const enquirySchema = new Schema<IEnquiry>({
-  firstName: { type: String },
-  lastName: { type: String },
-  fullName: { type: String },
-  email: { type: String, required: true, unique: true },
-  phone: { type: String, required: true },
-  reachOutOnWhatsApp: { type: Boolean, default: false },
-  eventType: {
-    type: String,
-    enum: Object.values(EventType),
+const enquirySchema = new Schema<IEnquiry>(
+  {
+    firstName: { type: String },
+    lastName: { type: String },
+    fullName: { type: String },
+    email: { type: String, required: true },
+    phone: { type: String },
+    reachOutOnWhatsApp: { type: Boolean, default: false },
+    eventType: {
+      type: String,
+      enum: Object.values(EventType),
+    },
+    newsLetterSubscription: { type: Boolean, default: true },
   },
-  newsLetterSubscription: { type: Boolean, default: true },
-  // newsLetterSubscription: {
-  //   type: Schema.Types.ObjectId,
-  //   ref: "NewsLetter",
-  // },
-});
+  { timestamps: true, strict: false }
+);
 
 const Enquiry: Model<IEnquiry> =
   mongoose.models.Enquiry || mongoose.model<IEnquiry>("Enquiry", enquirySchema);

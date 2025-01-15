@@ -5,7 +5,7 @@ export const defaultFormValues: IFormValues = {
   lastName: "",
   email: "",
   phone: "",
-  whatsAppAvailability: true,
+  reachOutOnWhatsApp: true,
   newsLetterSubscription: true,
   eventType: "",
 };

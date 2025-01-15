@@ -1,5 +1,11 @@
 "use client";
-import { Button, Stack, TextField, Typography } from "@mui/material";
+import {
+  Button,
+  CircularProgress,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
 import React, { useState } from "react";
 import CustomTextField from "./shared/CustomTextField";
 import styles from "./styles.module.css";
@@ -22,15 +28,11 @@ const Form = () => {
 
   const onFormSubmit = async (values: IFormValues) => {
     setIsSubmitting(true);
-    const formData = new FormData();
-    Object.entries(values).forEach(([key, value]) => {
-      formData.append(key, value);
-    });
-    console.log("called");
     try {
-      await axios.post("api/enquiry/contact-us", formData);
-      // setSnackbarOpen(true);
-      // setSnackbarMessage("We will get back to you soon!!");
+      console.log(values, "values");
+      await axios.post("api/contact-us", values);
+      setSnackbarOpen(true);
+      setSnackbarMessage("Thanks for submitting your details!!");
     } catch (error) {
       console.log(error);
       // setSnackbarOpen(true);
@@ -145,7 +147,7 @@ const Form = () => {
             )}
           />
           <Controller
-            name="whatsAppAvailability"
+            name="reachOutOnWhatsApp"
             control={control}
             render={({ field }) => (
               <CustomCheckbox
@@ -189,6 +191,11 @@ const Form = () => {
             className={styles.submitBtn}
             type="submit"
             sx={{ backgroundColor: "#658352" }}
+            endIcon={
+              isSubmitting && (
+                <CircularProgress size={18} sx={{ color: "white" }} />
+              )
+            }
           >
             Submit
           </Button>

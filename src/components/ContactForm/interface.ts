@@ -3,7 +3,7 @@ export interface IFormValues {
   lastName: string;
   email: string;
   phone: string;
-  whatsAppAvailability: boolean;
+  reachOutOnWhatsApp: boolean;
   newsLetterSubscription: true;
   eventType: string;
 }

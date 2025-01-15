@@ -1,18 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import Enquiry from "@/models/enquiry"; // Ensure to import Enquiry model
-import NewsLetter from "@/models/newsLetter"; // Ensure to import NewsLetter model
-import { newsLetterCreation } from "./utils";
+import { mapEventType, newsLetterCreation } from "./utils";
 import dbConnection from "@/dbConfig/dbConfig";
 
 dbConnection();
 
 export async function POST(request: NextRequest) {
   try {
-    const reqBody = await request.formData();
-    const body = Object.fromEntries(Array.from(reqBody.entries()));
-
+    const body = await request.json();
     const { email, newsLetterSubscription, phone } = body;
-
     if (!email)
       return NextResponse.json(
         {
@@ -28,7 +24,7 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
 
-    const contact = await Enquiry.create({
+    await Enquiry.create({
       firstName: body.firstName,
       lastName: body.lastName,
       fullName:
@@ -37,17 +33,21 @@ export async function POST(request: NextRequest) {
           : "",
       email: body.email,
       phone: body.phone,
-      reachOutOnWhatsApp: body.reachOutOnWhatsApp === "true",
-      // eventType: body.eventType,
-      newsLetterSubscription: newsLetterSubscription === "true",
+      reachOutOnWhatsApp: body.reachOutOnWhatsApp,
+      eventType: mapEventType(body.eventType.toString()),
+      newsLetterSubscription: newsLetterSubscription,
     });
 
-    console.log(contact);
-
-    // if (newsLetterSubscription === "true")
-    //   await newsLetterCreation(body.email.toString(), true);
-    // // Subscribe to newsletter
-    // else await newsLetterCreation(body.email.toString(), false); // Unsubscribe from newsletter
+    if (newsLetterSubscription)
+      await newsLetterCreation({
+        email: body.email.toString(),
+        newsLetterSubscription: true,
+      });
+    else
+      await newsLetterCreation({
+        email: body.email.toString(),
+        newsLetterSubscription: false,
+      });
 
     return NextResponse.json(
       { message: "Thank you for submitting. Our team will reach you soon!!" },
