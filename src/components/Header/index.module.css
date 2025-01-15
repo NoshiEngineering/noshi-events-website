@@ -1,0 +1,34 @@
+.backgroundContainer{
+  background-color: #FBF9EF !important;
+  width: 100% !important;
+  position: fixed !important;
+  z-index: 2 !important;
+}
+
+@media (max-width: 900px){
+  .mobileView {
+    padding: 6px 0px !important;
+  }
+  .desktopView {
+    display: none !important;
+  }
+}
+
+@media (min-width: 901px){
+  .mobileView {
+      display: none !important;
+    }
+  .desktopView {
+    padding: 10px 0px !important;
+  }
+}
+
+
+.links{
+  margin-left: 44px !important;
+  font-weight: 500 !important;
+}
+.buttonStyles{
+  background-color: #658352 !important;
+  padding: 10px 24px !important;
+}

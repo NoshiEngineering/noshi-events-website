@@ -1,11 +1,14 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { getMailTransporter } from "@/utils/nodeMailerConfig";
 import { NextRequest, NextResponse } from "next/server";
+import Enquiry from "@/models/enquiry"; // Ensure to import Enquiry model
+import { mapEventType, newsLetterCreation } from "./utils";
+import dbConnection from "@/dbConfig/dbConfig";
+
+dbConnection();
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { email } = body;
+    const { email, newsLetterSubscription, phone } = body;
     if (!email)
       return NextResponse.json(
         {
@@ -13,26 +16,44 @@ export async function POST(request: NextRequest) {
         },
         { status: 400 }
       );
+    if (!phone)
+      return NextResponse.json(
+        {
+          message: "email is required",
+        },
+        { status: 400 }
+      );
 
-    const transporter = getMailTransporter();
+    await Enquiry.create({
+      firstName: body.firstName,
+      lastName: body.lastName,
+      fullName:
+        body?.firstName && body?.lastName
+          ? body.firstName + " " + body.lastName
+          : "",
+      email: body.email,
+      phone: body.phone,
+      reachOutOnWhatsApp: body.reachOutOnWhatsApp,
+      eventType: mapEventType(body.eventType.toString()),
+      newsLetterSubscription: newsLetterSubscription,
+    });
 
-    const mailOptions = {
-      from: process.env.NODEMAILER_AUTH_USER,
-      to: email,
-      subject: "Hello from Noshi Events!",
-      html: `<p>Hello! 👋</p>
-               <p>We just wanted to say hi and hope you have a great day!</p>
-               <p>Cheers,</p>`,
-    };
+    if (newsLetterSubscription)
+      await newsLetterCreation({
+        email: body.email.toString(),
+        newsLetterSubscription: true,
+      });
+    else
+      await newsLetterCreation({
+        email: body.email.toString(),
+        newsLetterSubscription: false,
+      });
 
-    const response = await transporter.sendMail(mailOptions);
-
-    console.log(response);
     return NextResponse.json(
-      { message: "Thank you for submitting. Our team will reach you soon !!" },
+      { message: "Thank you for submitting. Our team will reach you soon!!" },
       { status: 200 }
     );
-  } catch (error: any) {
+  } catch (error) {
     console.log(error);
     return NextResponse.json(
       {
