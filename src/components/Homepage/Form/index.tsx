@@ -75,6 +75,7 @@ function Form() {
               size="small"
               sx={{
                 backgroundColor: "#fff",
+                borderRadius: "8px",
                 "& .MuiOutlinedInput-root": {
                   "& fieldset": {
                     borderColor: "#C8B9A2", // Set border color when not hovered

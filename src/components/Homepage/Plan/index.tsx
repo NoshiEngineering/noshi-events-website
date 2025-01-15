@@ -1,7 +1,16 @@
+"use client";
 import React from "react";
 import { Button, Stack, Typography } from "@mui/material";
 
 function Plan() {
+
+  const handleScrollToContactSection = (e: any) => {
+    let div = document.querySelector("#contact-section");
+    if (div) {
+      div.scrollIntoView({ block: "start", behavior: "smooth" });
+    }
+  };
+
   return (
     <Stack
       className="fixed-size-container"
@@ -35,7 +44,7 @@ function Plan() {
           fontSize: "20px",
           "@media (max-width: 900px)": {
             marginTop: "8px",
-            fontSize: "12px"
+            fontSize: "12px",
           },
         }}
       >
@@ -43,7 +52,9 @@ function Plan() {
         we’re here to make it unforgettable. From the spark of an idea to
         flawless execution, we craft seamless events and timeless memories.
       </Typography>
-      <Button variant="contained" sx={{
+      <Button
+        variant="contained"
+        sx={{
           backgroundColor: "#658352",
           "&:hover": { backgroundColor: "#5a7c4d" },
           "@media (max-width: 900px)": {
@@ -51,9 +62,11 @@ function Plan() {
             marginTop: "8px",
           },
           "@media (min-width: 901px)": {
-           marginTop: "24px",
+            marginTop: "24px",
           },
-        }} >
+        }}
+        onClick={handleScrollToContactSection}
+      >
         Book Now
       </Button>
     </Stack>
