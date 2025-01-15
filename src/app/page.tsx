@@ -1,11 +1,11 @@
-import ContactUs from "@/components/ContactForm";
-import Banner from "@/components/HomePage/Banner";
-import Events from "@/components/HomePage/Events";
-import Form from "@/components/ContactForm/Form";
-import Plan from "@/components/HomePage/Plan";
-import Processes from "@/components/HomePage/Processes";
-import Newsletter from "@/components/Newsletter";
-import ReachOut from "@/components/ReachOut";
+import ContactUs from "../components/ContactForm";
+import Banner from "../components/HomePage/Banner";
+import Events from "../components/HomePage/Events";
+import Form from "../components/ContactForm/Form";
+import Plan from "../components/HomePage/Plan";
+import Processes from "../components/HomePage/Processes";
+import Newsletter from "../components/Newsletter";
+import ReachOut from "../components/ReachOut";
 import { Stack } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 
