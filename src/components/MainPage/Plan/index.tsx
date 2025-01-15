@@ -4,8 +4,8 @@ import { Button, Stack, Typography } from "@mui/material";
 
 function Plan() {
 
-  const handleScrollToContactSection = (e: any) => {
-    let div = document.querySelector("#contact-section");
+  const handleScrollToContactSection = () => {
+    const div = document.querySelector("#contact-section");
     if (div) {
       div.scrollIntoView({ block: "start", behavior: "smooth" });
     }

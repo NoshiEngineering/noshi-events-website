@@ -1,9 +1,9 @@
 import ContactUs from "@/components/ContactForm";
-import Banner from "@/components/HomePage/Banner";
-import Events from "@/components/HomePage/Events";
+import Banner from "@/components/MainPage/Banner";
+import Events from "@/components/MainPage/Events";
 import Form from "@/components/ContactForm/Form";
-import Plan from "@/components/HomePage/Plan";
-import Processes from "@/components/HomePage/Processes";
+import Plan from "@/components/MainPage/Plan";
+import Processes from "@/components/MainPage/Processes";
 import Newsletter from "@/components/Newsletter";
 import ReachOut from "@/components/ReachOut";
 import { Stack } from "@mui/material";

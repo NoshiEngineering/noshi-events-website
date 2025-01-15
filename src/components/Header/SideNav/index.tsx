@@ -1,8 +1,7 @@
 "use client";
 import React from "react";
-import { Button, Drawer, Stack, Typography } from "@mui/material";
+import { Drawer, Stack, Typography } from "@mui/material";
 import { ChevronRightCircle, CloseCircle } from "mdi-material-ui";
-import styles from "../index.module.css";
 
 interface ISideNav {
   open: boolean;
@@ -10,16 +9,16 @@ interface ISideNav {
 }
 
 function SideNav({ open, toggleDrawer }: ISideNav) {
-  const handleScrollToContact = (e: any) => {
-    let div = document.querySelector("#contact-section");
+  const handleScrollToContact = () => {
+    const div = document.querySelector("#contact-section");
     if (div) {
       toggleDrawer(false)
       div.scrollIntoView({ block: "start", behavior: "smooth" });
     }
   };
 
-  const handleScrollToEvents = (e: any) => {
-    let div = document.querySelector("#events-section");
+  const handleScrollToEvents = () => {
+    const div = document.querySelector("#events-section");
     if (div) {
       toggleDrawer(false)
       div.scrollIntoView({ block: "start", behavior: "smooth" });
