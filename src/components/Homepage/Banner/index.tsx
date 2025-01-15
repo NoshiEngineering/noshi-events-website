@@ -1,6 +1,6 @@
-import React from 'react';
-import { Stack, Typography } from "@mui/material";
-import Image from 'next/image';
+import React from "react";
+import { Typography } from "@mui/material";
+import Image from "next/image";
 import styles from "./index.module.css";
 
 function Banner() {
@@ -31,13 +31,15 @@ function Banner() {
 
       {/* Text Content */}
       <div className={styles.textContent}>
-        <Typography className={styles.heading} fontWeight="fontWeightBold">NOSHI EVENTS</Typography>
-        <Typography className={styles.subheading} >
+        <Typography className={styles.heading} fontWeight="fontWeightBold">
+          NOSHI EVENTS
+        </Typography>
+        <Typography className={styles.subheading}>
           Crafting Experiences That Turn Into Long-Lasting Memories.
         </Typography>
       </div>
     </div>
-  )
+  );
 }
 
-export default Banner
+export default Banner;

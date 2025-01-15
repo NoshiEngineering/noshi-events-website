@@ -1,9 +1,9 @@
 import ContactUs from "@/components/ContactForm";
-import Banner from "@/components/Homepage/Banner";
-import Events from "@/components/Homepage/Events";
-import Form from "@/components/Homepage/Form";
-import Plan from "@/components/Homepage/Plan";
-import Processes from "@/components/Homepage/Processes";
+import Banner from "@/components/HomePage/Banner";
+import Events from "@/components/HomePage/Events";
+import Form from "@/components/ContactForm/Form";
+import Plan from "@/components/HomePage/Plan";
+import Processes from "@/components/HomePage/Processes";
 import Newsletter from "@/components/Newsletter";
 import ReachOut from "@/components/ReachOut";
 import { Stack } from "@mui/material";
@@ -21,7 +21,7 @@ export default function Home() {
         <Banner />
         <Plan />
         <Events />
-        <Form/>
+        <Form />
         <Stack className="fixed-size-container">
           <Processes />
           <Grid container>
