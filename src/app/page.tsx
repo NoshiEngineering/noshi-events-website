@@ -1,7 +1,7 @@
 import ContactUs from "@/components/ContactForm";
 import Banner from "@/components/MainPage/Banner";
 import Events from "@/components/MainPage/Events";
-import Form from "@/components/ContactForm/Form";
+import Form from "@/components/MainPage/Form";
 import Plan from "@/components/MainPage/Plan";
 import Processes from "@/components/MainPage/Processes";
 import Newsletter from "@/components/Newsletter";
@@ -11,7 +11,7 @@ import Grid from "@mui/material/Grid2";
 
 export default function Home() {
   return (
-    <Stack sx={{ backgroundColor: "#FBF9EF" }}>
+    <Stack sx={{ backgroundColor: "#FBF9EF" }} overflow="hidden">
       <Stack
         sx={{
           paddingTop: { xs: "30px", md: "15px" },
@@ -22,9 +22,12 @@ export default function Home() {
         <Plan />
         <Events />
         <Form />
-        <Stack className="fixed-size-container">
+        <Stack
+          className="fixed-size-container"
+          sx={{ marginTop: "28px !important" }}
+        >
           <Processes />
-          <Grid container>
+          <Grid container gap={{ xs: "40px", md: "0px" }}>
             <Grid size={{ xs: 12, md: 4.5 }}>
               <ContactUs />
             </Grid>
