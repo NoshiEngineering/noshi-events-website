@@ -1,11 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
+import { newsLetterCreation } from "../utils";
 
 export async function POST(request: NextRequest) {
-  console.log(body);
   try {
     const body = await request.json();
-    
-    console.log(body, "body");
+    await newsLetterCreation({
+      email: body.email,
+      newsLetterSubscription: body.subscription,
+    });
     return NextResponse.json(
       {
         message: "You are subscribed to Noshi Events",
@@ -14,7 +16,6 @@ export async function POST(request: NextRequest) {
     );
   } catch (error) {
     console.log(error);
-
     return NextResponse.json(
       {
         message: "Internal server error",

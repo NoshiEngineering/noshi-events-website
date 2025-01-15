@@ -3,8 +3,6 @@ import NewsLetter from "@/models/newsLetter"; // Import the NewsLetter model
 import { INewsLetterCreation } from "./interface";
 import dbConnection from "@/dbConfig/dbConfig";
 
-export const createOrUpdateNewsLetter = () => {};
-
 export const newsLetterCreation = async ({
   email,
   newsLetterSubscription,

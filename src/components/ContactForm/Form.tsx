@@ -22,17 +22,17 @@ const Form = () => {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
-  const { handleSubmit, control } = useForm<IFormValues>({
+  const { handleSubmit, control, reset } = useForm<IFormValues>({
     defaultValues: defaultFormValues,
   });
 
   const onFormSubmit = async (values: IFormValues) => {
     setIsSubmitting(true);
     try {
-      console.log(values, "values");
       await axios.post("api/contact-us", values);
       setSnackbarOpen(true);
       setSnackbarMessage("Thanks for submitting your details!!");
+      reset();
     } catch (error) {
       console.log(error);
       // setSnackbarOpen(true);

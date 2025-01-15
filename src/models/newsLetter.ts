@@ -5,10 +5,16 @@ interface INewsLetter extends Document {
   subscribed: boolean;
 }
 
-const newsLetterSchema = new Schema<INewsLetter>({
-  email: { type: String, required: true },
-  subscribed: { type: Boolean, default: true },
-});
+const newsLetterSchema = new Schema<INewsLetter>(
+  {
+    email: { type: String, required: true },
+    subscribed: { type: Boolean, default: true },
+  },
+  {
+    timestamps: true,
+    strict: false,
+  }
+);
 
 const NewsLetter: Model<INewsLetter> =
   mongoose.models.NewsLetter ||
