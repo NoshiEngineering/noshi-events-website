@@ -27,7 +27,8 @@ export const newsLetterCreation = async ({
 
 export const mapEventType = (type: string): EventType | string => {
   const normalizedType = type.replace(/event$/i, "").trim();
-  return Object.values(EventType).includes(normalizedType as EventType)
-    ? (normalizedType as EventType)
-    : "";
+  // return Object.values(EventType).includes(normalizedType as EventType)
+  //   ? (normalizedType as EventType)
+  //   : "";
+  return normalizedType;
 };

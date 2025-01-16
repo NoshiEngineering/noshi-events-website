@@ -12,8 +12,8 @@ export const defaultFormValues: IFormValues = {
 
 export const eventSelectionOptions: IEventOptions[] = [
   {
-    label: "Corportate Event (Offsite, Anniversary, Conferences etc)",
-    value: "Corportate Event",
+    label: "Corporate Event (Offsite, Anniversary, Conferences etc)",
+    value: "Corporate Event",
   },
   {
     label: "Personal Event (Wedding, Anniversary etc)",
