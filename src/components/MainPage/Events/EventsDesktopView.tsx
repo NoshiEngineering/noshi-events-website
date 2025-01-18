@@ -6,7 +6,8 @@ import { Stack, Typography } from "@mui/material";
 interface IEventTypes {
   eventTypes: {
     heading: string;
-    description: string;
+    mobileDescription: string;
+    desktopdDescription: string;
     image: string;
   }[];
 }
@@ -138,7 +139,7 @@ function EventsDesktopView({ eventTypes }: IEventTypes) {
               }}
               fontWeight={getDescriptionStyles(index).fontWeight}
             >
-              {event.description}
+              {event.desktopdDescription}
             </Typography>
           </Stack>
         ))}

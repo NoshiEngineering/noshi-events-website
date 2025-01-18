@@ -1,15 +1,47 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import {
-  Box,
   Button,
-  Checkbox,
-  FormControlLabel,
+  CircularProgress,
   Stack,
   TextField,
   Typography,
 } from "@mui/material";
+import { Controller, useForm } from "react-hook-form";
+import { emailRegExp } from "@/utils/regex";
+import axios from "axios";
+import { CustomCheckbox } from "@/components/ContactForm/shared/CustomCheckbox";
+import SnackbarComponent from "@/components/ContactForm/shared/SnackbarComponent";
+
+interface IFormValues {
+  email: string;
+  subscription: boolean;
+}
 
 function Form() {
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
+  const { handleSubmit, control, reset } = useForm<IFormValues>({
+    defaultValues: { email: "", subscription: true },
+  });
+
+  const onFormSubmit = async (values: IFormValues) => {
+    setIsSubmitting(true);
+    try {
+      await axios.post("api/contact-us/newsletter", values);
+      reset();
+      setSnackbarOpen(true);
+      setSnackbarMessage("You have subscribed for Noshi events");
+    } catch (error) {
+      console.log(error);
+      setSnackbarOpen(true);
+      setSnackbarMessage("Error Occured!");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <Stack
       className="fixed-size-container"
@@ -24,8 +56,9 @@ function Form() {
         },
       }}
     >
-      <Box
-        sx={{
+      <form
+        onSubmit={handleSubmit(onFormSubmit)}
+        style={{
           display: "flex",
           justifyContent: "center",
         }}
@@ -69,49 +102,58 @@ function Form() {
               },
             }}
           >
-            <TextField
-              placeholder="Enter Email Id"
-              variant="outlined"
-              size="small"
-              sx={{
-                backgroundColor: "#fff",
-                borderRadius: "8px",
-                "& .MuiOutlinedInput-root": {
-                  "& fieldset": {
-                    borderColor: "#C8B9A2", // Set border color when not hovered
-                  },
-                  "&:hover fieldset": {
-                    borderColor: "#C8B9A2", // Set border color on hover
-                  },
-                  "&.Mui-focused fieldset": {
-                    borderColor: "#C8B9A2", // Set border color when focused
-                  },
+            <Controller
+              name="email"
+              control={control}
+              rules={{
+                required: "Email is required",
+                pattern: {
+                  value: emailRegExp,
+                  message: "Invalid email address",
                 },
               }}
+              render={({ field, fieldState }) => (
+                  <TextField
+                    placeholder="Enter Email Id"
+                    value={field.value}
+                    onChange={(newValue) => field.onChange(newValue)}
+                    error={!!fieldState.error}
+                    size="small"
+                    sx={{
+                      backgroundColor: "#fff",
+                      borderRadius: "8px",
+                      "& .MuiOutlinedInput-root": {
+                        "& fieldset": {
+                          borderColor: "#C8B9A2",
+                        },
+                        "&:hover fieldset": {
+                          borderColor: "#C8B9A2",
+                        },
+                        "&.Mui-focused fieldset": {
+                          borderColor: "#C8B9A2",
+                        },
+                      },
+                    }}
+                  />
+
+              )}
             />
-            <FormControlLabel
-              control={<Checkbox color="success" />}
-              label={
-                <Typography
-                  sx={{
-                    fontSize: "12px",
-                    color: "#000",
-                    fontWeight: "600",
-                  }}
-                >
-                  Subscribe to Noshi Events NewsLetter
-                </Typography>
-              }
-              sx={{
-                margin: 0,
-                "@media (max-width: 900px)": {
-                  width: "100%",
-                },
-              }}
+            <Controller
+              name="subscription"
+              control={control}
+              render={({ field }) => (
+                <CustomCheckbox
+                  label="Subscribe to Noshi Events NewsLetter"
+                  checked={field.value}
+                  onChange={(event) => field.onChange(event.target.checked)}
+                />
+              )}
             />
           </Stack>
           <Button
             variant="contained"
+            disabled={isSubmitting}
+            type="submit"
             sx={{
               backgroundColor: "#658352",
               color: "#fff",
@@ -125,11 +167,21 @@ function Form() {
                 width: "135px",
               },
             }}
+            endIcon={
+              isSubmitting && (
+                <CircularProgress size={18} sx={{ color: "white" }} />
+              )
+            }
           >
             Submit
           </Button>
         </Stack>
-      </Box>
+      </form>
+      <SnackbarComponent
+        open={snackbarOpen}
+        message={snackbarMessage}
+        onClose={() => setSnackbarOpen(false)}
+      />
     </Stack>
   );
 }

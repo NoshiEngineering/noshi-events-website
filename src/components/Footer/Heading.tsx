@@ -24,6 +24,9 @@ const Heading = () => {
         <Typography fontSize={{ xs: "12px", md: "14px" }} color="#FFFFFF">
           Crafting Experiences That Turn Into Long-Lasting Memories.
         </Typography>
+        <Typography fontSize={{ xs: "12px", md: "14px" }} color="#FFFFFF">
+          A Shree Ventures Enterprise
+        </Typography>
       </Stack>
     </Stack>
   );
