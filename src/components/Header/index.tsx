@@ -5,10 +5,12 @@ import styles from "./index.module.css";
 import Image from "next/image";
 import { Menu, Phone } from "mdi-material-ui";
 import SideNav from "./SideNav";
+import copy from "copy-to-clipboard";
+import { useSnackbar } from "@/Context/SnackbarContext";
 
 function Header() {
   const [drawerOpen, setDrawerOpen] = useState(false);
-
+  const { showSnackbar } = useSnackbar();
   const toggleDrawer = () => {
     setDrawerOpen((prevState) => !prevState);
   };
@@ -30,14 +32,8 @@ function Header() {
   const phoneNumber = "+91 9373090013";
 
   const handleCopyPhoneNumber = () => {
-    navigator.clipboard
-      .writeText(phoneNumber)
-      .then(() => {
-        alert("Phone number copied to clipboard!");
-      })
-      .catch((err) => {
-        console.error("Error copying text: ", err);
-      });
+    copy(phoneNumber);
+    showSnackbar(`Copied to clipboard: ${phoneNumber}`, "success");
   };
 
   return (
@@ -104,7 +100,11 @@ function Header() {
             </Typography>
           </Stack>
           <Stack direction="row" alignItems="center">
-            <Phone color="primary" sx={{ height: "24px", width: "24px" }} />
+            <Phone
+              color="primary"
+              sx={{ height: "24px", width: "24px" }}
+              onClick={handleCopyPhoneNumber}
+            />
             <Menu
               onClick={toggleDrawer}
               color="primary"

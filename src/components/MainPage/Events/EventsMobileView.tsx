@@ -1,10 +1,11 @@
-import { Stack, Tooltip, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import React from "react";
 
 interface IEventType {
   heading: string;
-  description: string;
+  mobileDescription: string;
+  desktopdDescription: string;
   image: string;
 }
 
@@ -28,7 +29,7 @@ function EventsMobileView({ eventTypes }: IEventTypes) {
       {eventTypes.map((event: IEventType, index: number) => (
         <Stack
           key={index}
-          spacing={2}
+          spacing={2.5}
           direction="row"
           padding={1.4}
           sx={{
@@ -42,35 +43,33 @@ function EventsMobileView({ eventTypes }: IEventTypes) {
             },
           }}
         >
-          <Stack sx={{width: "64%"}}>
+          <Stack sx={{width: "55%"}}>
             <Typography
               fontWeight="fontWeightMedium"
               sx={{ color: "#fff", fontSize: "16px" }}
             >
               {event.heading}
             </Typography>
-            <Tooltip title={event.description} arrow>
-              <Typography
-                sx={{
-                  color: "#fff",
-                  fontSize: "12px",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  display: "-webkit-box",
-                  WebkitLineClamp: 3, // Limits the text to 3 lines
-                  WebkitBoxOrient: "vertical",
-                }}
-              >
-                {event.description}
-              </Typography>
-            </Tooltip>
+            <Typography
+              sx={{
+                color: "#fff",
+                fontSize: "12px",
+                // overflow: "hidden",
+                // textOverflow: "ellipsis",
+                // display: "-webkit-box",
+                // WebkitLineClamp: 3, // Limits the text to 3 lines
+                // WebkitBoxOrient: "vertical",
+              }}
+            >
+              {event.mobileDescription}
+            </Typography>
           </Stack>
           <Stack
             sx={{
               borderRadius: "4px",
               position: "relative",
-              height: "90px",
-              width: "36%",
+              height: "80px",
+              width: "45%",
               overflow: "hidden", // Ensures the image respects the container's borderRadius
             }}
           >
