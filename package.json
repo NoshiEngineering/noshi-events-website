@@ -16,6 +16,7 @@
     "@mui/material": "^6.1.10",
     "@mui/material-nextjs": "^6.1.9",
     "@types/nodemailer": "^6.4.17",
+    "@vercel/analytics": "^1.4.1",
     "axios": "^1.7.9",
     "cloudinary": "^2.5.1",
     "copy-to-clipboard": "^3.3.3",
