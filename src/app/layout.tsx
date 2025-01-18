@@ -60,8 +60,8 @@ export default function RootLayout({
             <SnackbarProvider>
               <Header />
               {children}
-            <Analytics />
               <Footer />
+              <Analytics />
             </SnackbarProvider>
           </ThemeProvider>
         </AppRouterCacheProvider>
