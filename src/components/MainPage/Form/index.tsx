@@ -11,7 +11,7 @@ import { Controller, useForm } from "react-hook-form";
 import { emailRegExp } from "@/utils/regex";
 import axios from "axios";
 import { CustomCheckbox } from "@/components/ContactForm/shared/CustomCheckbox";
-import SnackbarComponent from "@/components/ContactForm/shared/SnackbarComponent";
+import { useSnackbar } from "@/Context/SnackbarContext";
 
 interface IFormValues {
   email: string;
@@ -20,23 +20,20 @@ interface IFormValues {
 
 function Form() {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const [snackbarMessage, setSnackbarMessage] = useState("");
   const { handleSubmit, control, reset } = useForm<IFormValues>({
     defaultValues: { email: "", subscription: true },
   });
+  const { showSnackbar } = useSnackbar();
 
   const onFormSubmit = async (values: IFormValues) => {
     setIsSubmitting(true);
     try {
       await axios.post("api/contact-us/newsletter", values);
       reset();
-      setSnackbarOpen(true);
-      setSnackbarMessage("You have subscribed for Noshi events");
+      showSnackbar("You have subscribed for Noshi events", "success");
     } catch (error) {
       console.log(error);
-      setSnackbarOpen(true);
-      setSnackbarMessage("Error Occured!");
+      showSnackbar("Error Occured", "error");
     } finally {
       setIsSubmitting(false);
     }
@@ -113,29 +110,28 @@ function Form() {
                 },
               }}
               render={({ field, fieldState }) => (
-                  <TextField
-                    placeholder="Enter Email Id"
-                    value={field.value}
-                    onChange={(newValue) => field.onChange(newValue)}
-                    error={!!fieldState.error}
-                    size="small"
-                    sx={{
-                      backgroundColor: "#fff",
-                      borderRadius: "8px",
-                      "& .MuiOutlinedInput-root": {
-                        "& fieldset": {
-                          borderColor: "#C8B9A2",
-                        },
-                        "&:hover fieldset": {
-                          borderColor: "#C8B9A2",
-                        },
-                        "&.Mui-focused fieldset": {
-                          borderColor: "#C8B9A2",
-                        },
+                <TextField
+                  placeholder="Enter Email Id"
+                  value={field.value}
+                  onChange={(newValue) => field.onChange(newValue)}
+                  error={!!fieldState.error}
+                  size="small"
+                  sx={{
+                    backgroundColor: "#fff",
+                    borderRadius: "8px",
+                    "& .MuiOutlinedInput-root": {
+                      "& fieldset": {
+                        borderColor: "#C8B9A2",
                       },
-                    }}
-                  />
-
+                      "&:hover fieldset": {
+                        borderColor: "#C8B9A2",
+                      },
+                      "&.Mui-focused fieldset": {
+                        borderColor: "#C8B9A2",
+                      },
+                    },
+                  }}
+                />
               )}
             />
             <Controller
@@ -177,11 +173,6 @@ function Form() {
           </Button>
         </Stack>
       </form>
-      <SnackbarComponent
-        open={snackbarOpen}
-        message={snackbarMessage}
-        onClose={() => setSnackbarOpen(false)}
-      />
     </Stack>
   );
 }

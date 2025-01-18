@@ -1,17 +1,16 @@
 "use client";
 import React, { useState } from "react";
-import { Snackbar, Button, Stack, Typography, Alert } from "@mui/material";
+import { Button, Stack, Typography } from "@mui/material";
 import styles from "./index.module.css";
 import Image from "next/image";
 import { Menu, Phone } from "mdi-material-ui";
 import SideNav from "./SideNav";
 import copy from "copy-to-clipboard";
+import { useSnackbar } from "@/Context/SnackbarContext";
 
 function Header() {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const [snackbarMessage, setSnackbarMessage] = useState("");
-
+  const { showSnackbar } = useSnackbar();
   const toggleDrawer = () => {
     setDrawerOpen((prevState) => !prevState);
   };
@@ -30,16 +29,11 @@ function Header() {
     }
   };
 
-  const handleSnackbarClose = () => {
-    setSnackbarOpen(false);
-  };
-
   const phoneNumber = "+91 9373090013";
 
   const handleCopyPhoneNumber = () => {
-    copy(phoneNumber)
-    setSnackbarMessage(`Copied to clipboard: ${phoneNumber}`);
-    setSnackbarOpen(true);
+    copy(phoneNumber);
+    showSnackbar(`Copied to clipboard: ${phoneNumber}`, "success");
   };
 
   return (
@@ -106,7 +100,11 @@ function Header() {
             </Typography>
           </Stack>
           <Stack direction="row" alignItems="center">
-            <Phone color="primary" sx={{ height: "24px", width: "24px" }} onClick={handleCopyPhoneNumber} />
+            <Phone
+              color="primary"
+              sx={{ height: "24px", width: "24px" }}
+              onClick={handleCopyPhoneNumber}
+            />
             <Menu
               onClick={toggleDrawer}
               color="primary"
@@ -116,20 +114,6 @@ function Header() {
         </Stack>
       </Stack>
       {drawerOpen && <SideNav open={drawerOpen} toggleDrawer={toggleDrawer} />}
-      <Snackbar
-        open={snackbarOpen}
-        autoHideDuration={3000}
-        onClose={handleSnackbarClose}
-        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-      >
-        <Alert
-          onClose={handleSnackbarClose}
-          severity="success"
-          sx={{ width: "100%" }}
-        >
-          {snackbarMessage}
-        </Alert>
-      </Snackbar>
     </>
   );
 }
