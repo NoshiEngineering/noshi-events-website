@@ -10,7 +10,7 @@ import {
 import axios from "axios";
 import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-import SnackbarComponent from "../ContactForm/shared/SnackbarComponent";
+import { useSnackbar } from "@/Context/SnackbarContext";
 
 interface IForm {
   email: string;
@@ -21,8 +21,7 @@ export const Form = () => {
   const { handleSubmit, control, reset } = useForm<IForm>({
     defaultValues: { email: "" },
   });
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const [snackbarMessage, setSnackbarMessage] = useState("");
+  const { showSnackbar } = useSnackbar();
 
   const onSubmit = async (values: IForm) => {
     setIsSubmitting(true);
@@ -31,11 +30,11 @@ export const Form = () => {
         ...values,
         subscription: true,
       });
+      showSnackbar("You have subscribed for Noshi events", "success");
       reset();
-      setSnackbarOpen(true);
-      setSnackbarMessage("You have subscribed for Noshi events");
     } catch (error) {
       console.log(error);
+      showSnackbar("Error occurred", "error");
     } finally {
       setIsSubmitting(false);
     }
@@ -105,11 +104,6 @@ export const Form = () => {
           </Button>
         </Stack>
       </form>
-      <SnackbarComponent
-        open={snackbarOpen}
-        message={snackbarMessage}
-        onClose={() => setSnackbarOpen(false)}
-      />
     </>
   );
 };

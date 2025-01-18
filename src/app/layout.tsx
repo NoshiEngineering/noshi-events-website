@@ -8,6 +8,7 @@ import theme from "@/theme/theme";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Script from "next/script";
+import SnackbarProvider from "@/Context/SnackbarContext";
 
 // Google Font: Poppins
 const poppins = Poppins({
@@ -56,8 +57,10 @@ export default function RootLayout({
           <ThemeProvider theme={theme}>
             <CssBaseline />
             <Header />
-            {children}
-            <Footer />
+            <SnackbarProvider>
+              {children}
+              <Footer />
+            </SnackbarProvider>
           </ThemeProvider>
         </AppRouterCacheProvider>
       </body>

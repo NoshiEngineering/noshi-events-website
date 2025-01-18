@@ -16,27 +16,24 @@ import { emailRegExp, phoneRegExp } from "@/utils/regex";
 import { CustomCheckbox } from "./shared/CustomCheckbox";
 import CustomSelector from "./shared/CustomSelector";
 import axios from "axios";
-import SnackbarComponent from "./shared/SnackbarComponent";
+import { useSnackbar } from "@/Context/SnackbarContext";
 
 const Form = () => {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const [snackbarMessage, setSnackbarMessage] = useState("");
   const { handleSubmit, control, reset } = useForm<IFormValues>({
     defaultValues: defaultFormValues,
   });
+  const { showSnackbar } = useSnackbar();
 
   const onFormSubmit = async (values: IFormValues) => {
     setIsSubmitting(true);
     try {
       await axios.post("api/contact-us", values);
-      setSnackbarOpen(true);
-      setSnackbarMessage("Thanks for submitting your details!!");
+      showSnackbar("This is a success message!", "success");
       reset();
     } catch (error) {
       console.log(error);
-      // setSnackbarOpen(true);
-      // setSnackbarMessage("Error Occurred");
+      showSnackbar("Error Occurred", "success");
     } finally {
       setIsSubmitting(false);
     }
@@ -201,11 +198,6 @@ const Form = () => {
           </Button>
         </Stack>
       </form>
-      <SnackbarComponent
-        open={snackbarOpen}
-        message={snackbarMessage}
-        onClose={() => setSnackbarOpen(false)}
-      />
     </>
   );
 };

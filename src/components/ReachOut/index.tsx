@@ -1,22 +1,16 @@
 "use client";
-import { Snackbar, Stack, Typography, Alert } from "@mui/material";
-import React, { useState } from "react";
+import { Stack, Typography } from "@mui/material";
+import React from "react";
 import ContactCard from "./ContactCard";
 import { EmailOutline, MapMarkerOutline, Phone } from "mdi-material-ui";
 import copy from "copy-to-clipboard";
+import { useSnackbar } from "@/Context/SnackbarContext";
 
 const ReachOut = () => {
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const [snackbarMessage, setSnackbarMessage] = useState("");
-
+  const { showSnackbar } = useSnackbar();
   const handleCopy = (text: string) => {
     copy(text);
-    setSnackbarMessage(`Copied to clipboard: ${text}`);
-    setSnackbarOpen(true);
-  };
-
-  const handleSnackbarClose = () => {
-    setSnackbarOpen(false);
+    showSnackbar(`Copied to clipboard: ${text}`);
   };
 
   return (
@@ -91,22 +85,6 @@ const ReachOut = () => {
           ]}
         />
       </Stack>
-
-      {/* Snackbar for notifications */}
-      <Snackbar
-        open={snackbarOpen}
-        autoHideDuration={3000}
-        onClose={handleSnackbarClose}
-        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-      >
-        <Alert
-          onClose={handleSnackbarClose}
-          severity="success"
-          sx={{ width: "100%" }}
-        >
-          {snackbarMessage}
-        </Alert>
-      </Snackbar>
     </Stack>
   );
 };

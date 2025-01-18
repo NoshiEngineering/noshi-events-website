@@ -4,8 +4,10 @@ export const getMailTransporter = () => {
   return nodemailer.createTransport({
     service: process.env.NODEMAILER_SERVICE,
     auth: {
-      user: process.env.NODEMAILER_AUTH_USER,
-      pass: process.env.NODEMAILER_AUTH_PASS,
+      // user: process.env.NODEMAILER_AUTH_USER,
+      // pass: process.env.NODEMAILER_AUTH_PASS,
+      user: process.env.NODEMAILER_MARKETING_AUTH_USER,
+      pass: process.env.NODEMAILER_MARKETING_AUTH_PASS,
     },
   });
 };
@@ -23,8 +25,10 @@ export const sendEmail = async (
 ): Promise<void> => {
   const transporter = getMailTransporter();
 
-  await transporter.sendMail({
+  const mail = await transporter.sendMail({
     ...mailOptions,
     html: template,
   });
+
+  console.log(mail, "mail response");
 };
