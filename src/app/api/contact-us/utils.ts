@@ -2,7 +2,7 @@ import { EventType } from "@/models/enquiry";
 import NewsLetter from "@/models/newsLetter"; // Import the NewsLetter model
 import { INewsLetterCreation } from "./interface";
 import dbConnection from "@/dbConfig/dbConfig";
-import { sendEmail } from "../../../../services/emailer";
+import { sendEmail } from "../../../services/emailer";
 
 export const newsLetterCreation = async ({
   email,
