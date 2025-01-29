@@ -1,0 +1,13 @@
+.icon {
+  width: 20px !important;
+  height: 20px !important;
+  margin-left: auto !important;
+}
+
+.question {
+  align-items: center !important;
+  cursor: pointer !important;
+  padding: 8px 0px !important;
+  gap: 4px !important;
+  flex-direction: row !important;
+}

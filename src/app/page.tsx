@@ -1,4 +1,5 @@
 import ContactUs from "@/components/ContactForm";
+import Faqs from "@/components/Faqs";
 import Banner from "@/components/MainPage/Banner";
 import Events from "@/components/MainPage/Events";
 import Form from "@/components/MainPage/Form";
@@ -6,6 +7,7 @@ import Plan from "@/components/MainPage/Plan";
 import Processes from "@/components/MainPage/Processes";
 import Newsletter from "@/components/Newsletter";
 import ReachOut from "@/components/ReachOut";
+import { homePageFaqs } from "@/constants/Faqs";
 import { Stack } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 
@@ -24,7 +26,9 @@ export default function Home() {
         <Form />
         <Stack
           className="fixed-size-container"
-          sx={{ marginTop: "28px !important" }}
+          sx={{
+            marginTop: "28px !important",
+          }}
         >
           <Processes />
           <Grid container gap={{ xs: "40px", md: "0px" }}>
@@ -42,6 +46,7 @@ export default function Home() {
             </Grid>
           </Grid>
         </Stack>
+        <Faqs faqs={homePageFaqs} />
       </Stack>
     </Stack>
   );
