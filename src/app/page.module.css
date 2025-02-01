@@ -1,0 +1,16 @@
+.notFoundPageIcon {
+  height: 16px;
+  width: 16px;
+}
+
+@media (min-width: 900px) {
+  .notFoundBearImag {
+    width: 500px;
+    height: 500px;
+  }
+
+  .notFoundPageIcon {
+    height: 30px;
+    width: 30px;
+  }
+}
