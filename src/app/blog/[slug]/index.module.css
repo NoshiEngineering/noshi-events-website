@@ -1,0 +1,30 @@
+.imageContainer{
+  position: relative !important;
+}
+
+@media (min-width: 901px){
+  .heading{
+    font-size: 32px !important;
+    line-height: 20px !important; 
+    margin: 38px 0px 36px 0px !important;
+  }
+  .imageContainer {
+    margin-bottom: 38px !important;
+    width: 100% !important;
+    height: 360px !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .heading {
+    font-size: 20px !important;
+    line-height: 20px !important;
+    margin: 20px 0px 16px 0px !important;
+  }
+  .imageContainer {
+    margin-bottom: 40px !important;
+    width: 100% !important;
+    height: 160px !important;
+    object-fit: contain !important;
+  }
+}
