@@ -1,0 +1,104 @@
+
+.container {
+  position: relative !important;
+  width: 100% !important;
+  height: 400px !important;
+  overflow: hidden !important;
+  margin-top: 10px !important;
+}
+
+.firstSection {
+  position: relative !important;
+  height: 400px !important;
+  overflow: hidden !important;
+}
+
+.firstSectionBackground {
+  position: absolute !important;
+  inset: 0 !important;
+  background-color: #e5d5c5 !important;
+}
+
+.diagonalOverlay {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 1 !important;
+  background-color: #e5d5c5 !important;
+  clip-path: polygon(0 0, 55% 0, 45% 100%, 0 100%) !important;
+}
+
+.imageContainer {
+  position: absolute !important;
+  right: 0 !important;
+  top: 0 !important;
+  height: 100% !important;
+  width: 60% !important;
+}
+
+.imageContainer img {
+  object-fit: cover !important;
+}
+
+.pageHeading {
+  position: relative !important;
+  z-index: 1 !important;
+  height: 100% !important;
+  width: 55% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.textContent {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  text-align: center !important;
+  background-color: #EAE1D5D9 !important;
+  z-index: 1 !important;
+  padding: 24px !important;
+}
+
+@media (max-width: 900px){
+  .container {
+    background-image: url("/eventsPage/events-page-background.svg") !important;
+    background-size: cover !important;
+  }
+  .firstSection{
+    display: none !important;
+  }
+  .textContent {
+    font-size: 12px !important;
+    width: 80% !important;
+    padding: 24px 46px !important;
+  }
+  .pageHeadingMobile {
+    font-size: 36px !important;
+    line-height: 36px !important;
+    color: #1E2203 !important;
+  }
+  .mainHeading{
+    display: none !important;
+  }
+}
+
+
+@media (min-width: 901px) {
+  .container {
+    margin-top: 65px !important;
+    margin-bottom: 30px !important;
+  }
+  .mainHeading {
+    font-size: 64px !important;
+    line-height: 20px !important;
+    text-align: center !important;
+    color: #000 !important;
+  }
+  .textContent {
+    display: none !important;
+  }
+  .pageHeadingMobile {
+    display: none;
+  }
+}
