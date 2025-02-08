@@ -1,0 +1,124 @@
+.container {
+  position: relative !important;
+  width: 100% !important;
+  height: 400px !important;
+  overflow: hidden !important;
+  margin-top: 10px !important;
+}
+
+.leftContainer {
+  position: absolute !important;
+  top: 0 !important;
+  height: 100% !important;
+  width: 50% !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  /* object-fit: cover !important; */
+  background-color: #C8B9A2 !important;
+}
+
+.rightImage {
+  position: absolute !important;
+  top: 0 !important;
+  height: 100% !important;
+  width: 50% !important;
+  object-fit: cover !important;
+}
+
+.leftContainer {
+  left: 0 !important;
+}
+
+.rightImage {
+  left: 50% !important;
+}
+
+.diagonalOverlay {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  width: 5% !important;
+  height: 108% !important;
+  background: white !important;
+  transform: translate(-50%, -50%) rotate(10deg) !important;
+  z-index: 1 !important;
+}
+
+.textContent {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  text-align: center !important;
+  background-color: #EAE1D5D9 !important;
+  z-index: 1 !important;
+  padding: 24px !important;
+}
+
+@media (max-width: 900px) {
+  .textContent {
+    font-size: 12px !important;
+    width: 80% !important;
+    padding: 24px 46px !important;
+  }
+
+  .diagonalOverlay {
+    display: none !important;
+  }
+
+  .heading {
+    font-size: 36px !important;
+    color: #1E2203 !important;
+  }
+
+  .subheading {
+    font-size: 12px !important;
+    color: #1E2203 !important;
+  }
+  .pageHeadingMobile {
+    font-size: 36px !important;
+    line-height: 36px !important;
+    color: #1E2203 !important;
+  }
+  .pageHeadingDesktop{
+    display: none !important;
+  }
+  .leftContainer{
+    display: none !important;
+  }
+  .rightImage{
+    display: none !important;
+  }
+  .container {
+    background-image: url("/blogs/blogs-background.svg") !important;
+    background-size: cover !important;
+  }
+}
+
+@media (min-width: 901px) {
+  .container {
+    margin-top: 65px !important;
+    margin-bottom: 30px !important;
+  }
+
+  .heading {
+    font-size: 72px !important;
+  }
+
+  .subheading {
+    font-size: 20px !important;
+  }
+
+  .textContent {
+    display: none !important;
+  }
+  .pageHeadingDesktop {
+    font-size: 64px !important;
+    line-height: 20px !important;
+    color: #1E2203 !important;
+  }
+  .pageHeadingMobile{
+    display: none;
+  }
+}
