@@ -23,6 +23,9 @@ export async function generateMetadata({ params }: TProps): Promise<Metadata> {
     title: post.heading,
     description: post.metaDescription,
     keywords: post.keywords,
+    alternates: {
+      canonical: `https://www.noshievents.com/blog/${post.slug}`,
+    },
     openGraph: {
       title: post.heading,
       description: post.metaDescription,
