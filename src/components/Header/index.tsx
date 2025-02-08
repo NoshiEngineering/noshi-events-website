@@ -7,6 +7,7 @@ import { Menu, Phone } from "mdi-material-ui";
 import SideNav from "./SideNav";
 import copy from "copy-to-clipboard";
 import { useSnackbar } from "@/Context/SnackbarContext";
+import Link from "next/link";
 
 function Header() {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -29,6 +30,12 @@ function Header() {
     }
   };
 
+  const handleScrollToBlogs = () => {
+    const div = document.querySelector('#blogs');
+    if(div)
+      div.scrollIntoView({block:'start', behavior:'smooth'})
+  }
+
   const phoneNumber = "+91 9373090013";
 
   const handleCopyPhoneNumber = () => {
@@ -45,12 +52,14 @@ function Header() {
           className={`fixed-size-container ${styles.desktopView}`}
         >
           <Stack direction="row" alignItems="center">
+            <Link href="/" passHref>
             <Image
               src="/noshi-events-logo.svg"
               width={60}
               height={60}
               alt="logo"
             />
+            </Link>
             <Button
               variant="text"
               disableRipple
@@ -58,6 +67,14 @@ function Header() {
               onClick={handleScrollToEvents}
             >
               Events
+            </Button>
+            <Button
+              variant="text"
+              disableRipple
+              className={styles.links}
+              onClick={handleScrollToBlogs}
+            >
+              Blogs
             </Button>
             <Button
               variant="text"

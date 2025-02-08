@@ -5,6 +5,7 @@ import styles from "./styles.module.css";
 
 const Heading = () => {
   return (
+    <Stack alignItems="center" spacing={1}>
     <Stack direction="row" gap={{ xs: "6px", md: "9px" }} alignItems="center">
       <Image
         src="/noshi-events-logo.svg"
@@ -13,7 +14,7 @@ const Heading = () => {
         height={60}
         alt="logo"
       />
-      <Stack>
+      <Stack alignItems="flex-start">
         <Typography
           fontSize={{ xs: "16px", md: "24px" }}
           fontWeight={{ xs: 600 }}
@@ -24,10 +25,12 @@ const Heading = () => {
         <Typography fontSize={{ xs: "12px", md: "14px" }} color="#FFFFFF">
           Crafting Experiences That Turn Into Long-Lasting Memories.
         </Typography>
-        <Typography fontSize={{ xs: "12px", md: "14px" }} color="#FFFFFF">
+       
+      </Stack>
+    </Stack>
+    <Typography fontSize={{ xs: "16px", md: "24px" }}  fontWeight={{ xs: 600 }} color="#FFFFFF"  >
           A Shree Ventures Enterprise
         </Typography>
-      </Stack>
     </Stack>
   );
 };

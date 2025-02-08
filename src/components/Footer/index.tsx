@@ -18,7 +18,6 @@ const Footer = () => {
         className="fixed-size-container"
         spacing={{ xs: 4, md: 12 }}
         width="100%"
-        sx={{ alignItems: "center" }}
       >
         <Grid size={{ xs: 12, md: 5 }}>
           <Heading />
