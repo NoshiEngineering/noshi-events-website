@@ -1,19 +1,17 @@
+"use client";
+
 import { Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import React from "react";
-
-interface IEventType {
-  heading: string;
-  mobileDescription: string;
-  desktopdDescription: string;
-  image: string;
-}
+import { IEventType } from ".";
+import { useRouter } from "next/navigation";
 
 interface IEventTypes {
   eventTypes: IEventType[];
 }
 
 function EventsMobileView({ eventTypes }: IEventTypes) {
+  const router = useRouter();
   return (
     <Stack gap={2}>
       <Typography
@@ -29,6 +27,7 @@ function EventsMobileView({ eventTypes }: IEventTypes) {
       {eventTypes.map((event: IEventType, index: number) => (
         <Stack
           key={index}
+          onClick={() => router.push(`/${event.urlSlug}`)}
           spacing={2.5}
           direction="row"
           padding={1.4}
@@ -43,7 +42,7 @@ function EventsMobileView({ eventTypes }: IEventTypes) {
             },
           }}
         >
-          <Stack sx={{width: "55%"}}>
+          <Stack sx={{ width: "55%" }}>
             <Typography
               fontWeight="fontWeightMedium"
               sx={{ color: "#fff", fontSize: "16px" }}

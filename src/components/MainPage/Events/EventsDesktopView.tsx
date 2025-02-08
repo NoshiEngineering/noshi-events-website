@@ -2,17 +2,16 @@
 import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { Stack, Typography } from "@mui/material";
+import { IEventType } from ".";
+import { ChevronRight } from "mdi-material-ui";
+import { useRouter } from "next/navigation";
 
-interface IEventTypes {
-  eventTypes: {
-    heading: string;
-    mobileDescription: string;
-    desktopdDescription: string;
-    image: string;
-  }[];
+interface IEventsDesktopViewProps {
+  eventTypes: IEventType[];
 }
 
-function EventsDesktopView({ eventTypes }: IEventTypes) {
+function EventsDesktopView({ eventTypes }: IEventsDesktopViewProps) {
+  const router = useRouter();
   const [activeIndex, setActiveIndex] = useState(0);
   const [contentHeight, setContentHeight] = useState<number | undefined>(
     undefined
@@ -139,7 +138,19 @@ function EventsDesktopView({ eventTypes }: IEventTypes) {
               }}
               fontWeight={getDescriptionStyles(index).fontWeight}
             >
-              {event.desktopdDescription}
+              {event.desktopdDescription} <br />
+              <span
+                onClick={() => router.push(`/${event.urlSlug}`)}
+                style={{
+                  fontWeight: 600,
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  color: "#658352",
+                }}
+              >
+                Read More <ChevronRight />
+              </span>
             </Typography>
           </Stack>
         ))}
