@@ -8,7 +8,7 @@ import Link from "next/link";
 // import DynamicIcon from "./DynamicIcon";
 
 const RenderLinks = ({ link }: { link: IFooterItem }) => (
-  <Link href={link.url} passHref style={{ textDecoration: "none" }}>
+  <Link href={link.url} target="_blank" passHref style={{ textDecoration: "none" }}>
     <Stack direction="row" alignItems="center" spacing={1}>
       {/* {link.icon && <DynamicIcon icon={link.icon} />} */}
       <Typography

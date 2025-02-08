@@ -31,12 +31,14 @@ function Banner() {
 
       {/* Text Content */}
       <div className={styles.textContent}>
+        <div className={styles.subTextContent}>
         <Typography className={styles.heading} fontWeight="fontWeightBold">
           NOSHI EVENTS
         </Typography>
         <Typography className={styles.subheading}>
           Crafting Experiences That Turn Into Long-Lasting Memories.
         </Typography>
+        </div>
       </div>
     </div>
   );
