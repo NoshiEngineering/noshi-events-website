@@ -7,11 +7,11 @@ import { Metadata } from "next";
 import { events } from "./config";
 import EventsBanner from "@/components/EventsBanner";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { event: string };
-}): Promise<Metadata> {
+type TProps = {
+  params: Promise<{ event: string }>;
+};
+
+export async function generateMetadata({ params }: TProps): Promise<Metadata> {
   const { event } = await params;
 
   const eventMatch = events.find((p) => p.eventSlug === event);
@@ -32,7 +32,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function page({ params }: { params: { event: string } }) {
+export default async function page({ params }: TProps) {
   const { event } = await params;
 
   const eventMatch = events.find((p) => p.eventSlug === event);
@@ -61,7 +61,12 @@ export default async function page({ params }: { params: { event: string } }) {
             {eventMatch.heading}
           </Typography>
           <Stack className={styles.imageContainer}>
-            <Image src={eventMatch.image} alt={eventMatch.heading} className={styles.image} fill/>
+            <Image
+              src={eventMatch.image}
+              alt={eventMatch.heading}
+              className={styles.image}
+              fill
+            />
           </Stack>
           <Stack dangerouslySetInnerHTML={{ __html: eventMatch.description }} />
         </Stack>

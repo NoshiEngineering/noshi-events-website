@@ -6,11 +6,11 @@ import styles from "./index.module.css";
 import Image from "next/image";
 import { Metadata } from "next";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> {
+type TProps = {
+  params: Promise<{ slug: string }>;
+};
+
+export async function generateMetadata({ params }: TProps): Promise<Metadata> {
   const { slug } = await params;
 
   const post = blogPosts.find((p) => p.slug === slug);
@@ -31,7 +31,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function BlogPost({ params }: { params: { slug: string } }) {
+export default async function BlogPost({ params }: TProps) {
   const { slug } = await params;
 
   const post = blogPosts.find((p) => p.slug === slug);
