@@ -4,14 +4,12 @@ import { Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import React from "react";
 import { IEventType } from ".";
-import { useRouter } from "next/navigation";
 
 interface IEventTypes {
   eventTypes: IEventType[];
 }
 
 function EventsMobileView({ eventTypes }: IEventTypes) {
-  const router = useRouter();
   return (
     <Stack gap={2}>
       <Typography
@@ -27,7 +25,7 @@ function EventsMobileView({ eventTypes }: IEventTypes) {
       {eventTypes.map((event: IEventType, index: number) => (
         <Stack
           key={index}
-          onClick={() => router.push(`/${event.urlSlug}`)}
+          onClick={() => window.open(`/${event.urlSlug}`, "_blank")}
           spacing={2.5}
           direction="row"
           padding={1.4}

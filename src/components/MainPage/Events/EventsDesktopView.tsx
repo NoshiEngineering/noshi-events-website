@@ -4,14 +4,12 @@ import Image from "next/image";
 import { Stack, Typography } from "@mui/material";
 import { IEventType } from ".";
 import { ChevronRight } from "mdi-material-ui";
-import { useRouter } from "next/navigation";
 
 interface IEventsDesktopViewProps {
   eventTypes: IEventType[];
 }
 
 function EventsDesktopView({ eventTypes }: IEventsDesktopViewProps) {
-  const router = useRouter();
   const [activeIndex, setActiveIndex] = useState(0);
   const [contentHeight, setContentHeight] = useState<number | undefined>(
     undefined
@@ -140,7 +138,7 @@ function EventsDesktopView({ eventTypes }: IEventsDesktopViewProps) {
             >
               {event.desktopdDescription} <br />
               <span
-                onClick={() => router.push(`/${event.urlSlug}`)}
+                onClick={() => window.open(`/${event.urlSlug}`, "_blank")}
                 style={{
                   fontWeight: 600,
                   cursor: "pointer",
