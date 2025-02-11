@@ -24,7 +24,7 @@ const CustomButtonGroupAsArrows = ({
           position: "absolute",
           width: "48px",
           height: "48px",
-          left: "-2px",
+          left: "-4px",
           cursor: "pointer",
         }}
         onClick={previous}
@@ -35,7 +35,7 @@ const CustomButtonGroupAsArrows = ({
           position: "absolute",
           width: "48px",
           height: "48px",
-          right: "-2px",
+          right: "0px",
           cursor: "pointer",
         }}
         color="primary"
@@ -129,7 +129,7 @@ const BlogsCrousel = () => {
             onClick={() => window.open(`/blog/${blog.slug}`)}
           >
             <div
-              style={{ width: "100%", height: "180px", position: "relative" }}
+              style={{ width: "100%", height: "180px", position: "relative",boxShadow:" rgba(0, 0, 0, 0.15) 0px 5px 15px 0px" }}
             >
               <Image
                 src={blog.image}
@@ -138,7 +138,7 @@ const BlogsCrousel = () => {
                 objectFit="contain"
               />
             </div>
-            <Typography variant="subtitle2">{blog.heading}</Typography>
+            <Typography variant="subtitle2"  sx={{marginTop:'10px'}}>{blog.heading}</Typography>
           </Paper>
         ))}
       </Carousel>
