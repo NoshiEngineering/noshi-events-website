@@ -346,7 +346,7 @@ export const blogPosts = [
   },
   {
     heading: `Top Trends in Event Themes for 2025: What to Expect for Your Next Big Event`,
-    slug: "slug - top-trends-event-themes-2025",
+    slug: "top-trends-event-themes-2025",
     metaDescription: "Discover the top event theme trends for 2025 and get inspired for your next big celebration with innovative ideas and unforgettable experiences.",
     keywords: "Event Themes for 2025",
     description: `
