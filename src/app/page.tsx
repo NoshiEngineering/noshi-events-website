@@ -1,3 +1,4 @@
+import BlogsCrousel from "@/components/BlogsCrousel";
 import ContactUs from "@/components/ContactForm";
 import Faqs from "@/components/Faqs";
 import Banner from "@/components/MainPage/Banner";
@@ -45,6 +46,7 @@ export default function Home() {
               </Stack>
             </Grid>
           </Grid>
+          <BlogsCrousel />
         </Stack>
         <Faqs faqs={homePageFaqs} />
       </Stack>
